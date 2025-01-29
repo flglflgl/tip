@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tips</title>
+</head>
+
+<body>
+  <div class="grid">
+    <div class="leftColumn">
+
+      <!-- Form to submit tips -->
+      <form id="tipForm" action="/tip" method="POST">
+
+        <!-- Tip Input required -->
+        <label for="tipp">Tip</label>
+        <input id="tip" class="linput" type="text" name="tip" required />
+
+        <!-- Signing Input -->
+        <canvas height="100" width="300" class="signingInput"></canvas>
+
+        <!-- Github Input not required -->
+        <label for="github">Github</label>
+        <input id="github" type="text" name="github" />
+
+        <!-- Github URL -->
+        <label for="githubURL">GithubURL</label>
+        <input id="githubURL" type="url" name="githubURL" />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="rightColumn">
+      <!-- Tips will be shown here -->
+    </div>
+  </div>
+
+  <style>
+
+    /*
+    **
+    ** Grid
+    **
+    ** Form
+    **
+    ** Tip
+    **
+    */
+
+    * {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui;
+}
+
+/* ---------- #GRID ---------- */
+
+.grid {
+  width: 90vw;
+  height: 90vh;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.leftColumn {
+  border: 1px solid transparent;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-image: url('bdbdbd.png');
+  color: #ffffff;
+  padding: 20px;
+}
+
+.rightColumn {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: minmax(100px, 200px);
+  gap: 20px;
+  color: #bdbdbd;
+  padding: 2px;
+  overflow: scroll;
+}
+
+/* ---------- #FORM ---------- */
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  height: 27px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  margin: 4px 0 14px 0;
+  padding: 0 10px;
+}
+
+.linput {
+  height: 200px;
+}
+
+button {
+  height: 29.9px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background-color: #ffffff;
+  color: #bdbdbd;
+  margin: 12.9px 0;
+}
+
+button:hover {
+  height: 29.9px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255, 0.7);
+  color: #bdbdbd;
+  margin: 12.9px 0;
+}
+
+/* ---------- #TIP ---------- */
+
+.tipCon {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  min-height: 100px;
+  border: 2px solid #bdbdbd;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.tip {
+  margin: 0 0 20px 0;
+}
+
+.github  {
+  cursor: pointer;
+}
+
+a {
+  color: #bdbdbd;
+  text-decoration: none;
+}
+
+</style>
+
+<script>
+
+const form = document.getElementById('tipForm');
+const tipInput = document.getElementById('tip');
+const githubInput = document.getElementById('github');
+const githubURLInput = document.getElementById('githubURL');
+const rightColumn = document.querySelector('.rightColumn');
+
+function createTipElement(tip, github, githubURL) {
+  const tipCon = document.createElement('div');
+  tipCon.className = 'tipCon';
+
+  const tipElement = document.createElement('div');
+  tipElement.className = 'tip';
+  tipElement.textContent = tip;
+
+  const githubElement = document.createElement('div');
+  githubElement.className = 'github';
+
+  if (github && githubURL) {
+    const link = document.createElement('a');
+    link.href = githubURL;
+    link.textContent = github;
+    link.target = '_blank'; // Open link to Github in new browser window
+    githubElement.appendChild(link);
+  } else {
+    githubElement.textContent = github;
+  }
+
+  tipCon.appendChild(tipElement);
+  tipCon.appendChild(githubElement);
+
+  return tipCon;
+}
+
+// Function to fetch tips
+async function fetchAndDisplayTips() {
+  try {
+    const response = await fetch('/tip');
+    if (!response.ok) {
+      throw new Error('Failed to fetch tips');
+    }
+    const tips = await response.json();
+
+    console.log('Fetched tips:', tips); // Debugging
+
+    // Reser .rightColumn
+    rightColumn.innerHTML = '';
+
+    // Reverse the order to show the newest tip first
+    tips.reverse().forEach(({ tip, github, githubURL }) => {
+      const tipElement = createTipElement(tip, github, githubURL);
+      rightColumn.appendChild(tipElement);
+    });
+  } catch (error) {
+    console.error('Error fetching tips:', error);
+  }
+}
+
+// Event listener for form submission
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const tip = tipInput.value.trim();
+  const github = githubInput.value.trim();
+  const githubURL = githubURLInput.value.trim();
+
+  if (!tip) {
+    alert('Tip is required.');
+    return;
+  }
+
+  try {
+    const response = await fetch('/tip', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ tip, github, githubURL }),
+    });
+
+    const result = await response.json();
+    console.log('Response from server:', result); // Debugging
+
+    if (response.ok && result.tip) {
+      const newTipElement = createTipElement(result.tip, result.github, result.githubURL);
+
+      // Prepend the new tip to the top of the right column
+      rightColumn.insertBefore(newTipElement, rightColumn.firstChild);
+
+      // Reset form inputs
+      form.reset();
+    } else {
+      alert(`Error while submitting your tip: ${result.message || 'Unknown error'}`);
+    }
+  } catch (error) {
+    console.error('Error submitting tip:', error);
+    alert('Error occurred while submitting your tip.');
+  }
+});
+
+fetchAndDisplayTips();
+
+</script>
+</body>
+</html>

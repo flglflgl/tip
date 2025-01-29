@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tip Form</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <div class="grid">
+    <div class="col">
+      <form id="tipForm" action="/tip" method="POST">
+        <label for="tipp">Tip</label>
+        <input id="tipInput" class="linput" type="text" name="tip" required />
+
+        <label for="github">Github</label>
+        <input type="text" name="github" />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="col" id="rightColumn">
+      <!-- Tips will appear here -->
+    </div>
+  </div>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui;
+    }
+
+    .grid {
+      width: 90vw;
+      height: 90vh;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .col {
+      border: 2px solid #cccccc;
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input {
+      height: 27px;
+      border: 1px solid #cccccc;
+      border-radius: 4.9px;
+      margin: 4px 0 14px 0;
+      padding: 0 10px;
+    }
+
+    .linput {
+      height: 200px;
+    }
+
+    button {
+      height: 29.9px;
+      border: 1px solid #cccccc;
+      border-radius: 4.9px;
+      color: #ffffff;
+      margin: 12.9px 0;
+      background-color: #007bff;
+      cursor: pointer;
+    }
+  </style>
+
+<script>
+  const form = document.getElementById('tipForm');
+  const tipInput = document.getElementById('tipInput');
+  const githubInput = document.querySelector('input[name="github"]');
+  const rightColumn = document.getElementById('rightColumn');
+
+  // Fetch and display tips
+  async function fetchTips() {
+    try {
+      const response = await fetch('/tip');
+      if (!response.ok) {
+        throw new Error('Failed to fetch tips');
+      }
+      const tips = await response.json();
+
+      tips.forEach((tip) => {
+        const tipElement = document.createElement('p');
+        tipElement.textContent = `${tip.tip} (GitHub: ${tip.github})`;
+        rightColumn.appendChild(tipElement);
+      });
+    } catch (error) {
+      console.error('Error fetching tips:', error);
+    }
+  }
+
+  // Initialize by fetching tips
+  fetchTips();
+
+  // Handle form submission
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const tip = tipInput.value.trim();
+    const github = githubInput.value.trim();
+
+    if (!tip || !github) {
+      alert('Please provide both a tip and a GitHub link!');
+      return;
+    }
+
+    try {
+      const response = await fetch('/tip', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ tip, github }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        const tipElement = document.createElement('p');
+        tipElement.textContent = `${tip} (GitHub: ${github})`;
+        rightColumn.appendChild(tipElement);
+
+        form.reset(); // Clear the form fields
+      } else {
+        const error = await response.json();
+        console.error('Error adding tip:', error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  });
+</script>
+</body>
+</html>

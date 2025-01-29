@@ -25,7 +25,7 @@
         <input id="github" type="text" name="github" />
 
         <!-- Github URL -->
-        <label for="githubURL">GithubURL</label>
+        <label for="githubURL">Github URL</label>
         <input id="githubURL" type="url" name="githubURL" />
 
         <button type="submit">Submit</button>
@@ -86,10 +86,18 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: minmax(100px, 200px);
-  gap: 20px;
+  gap: 4.9px 20px;
   color: #bdbdbd;
-  padding: 2px;
+  padding: 4px 20px;
   overflow: scroll;
+}
+
+.rightColumn .tipCon:nth-child(3) {
+  margin-top: 65px;
+}
+
+.rightColumn .tipCon:nth-child(4) {
+  margin-top: 65px;
 }
 
 /* ---------- #FORM ---------- */
@@ -97,22 +105,36 @@ body {
 form {
   display: flex;
   flex-direction: column;
+  height: 80vh;
 }
 
 input {
-  height: 27px;
+  height: 22px;
   border: 1px solid transparent;
   border-radius: 10px;
-  margin: 4px 0 14px 0;
+  margin: 4px 0 10px 0;
   padding: 0 10px;
 }
 
 .linput {
-  height: 200px;
+  height: 29%;
+  border-radius: 10px 10px 0 0;
+  margin: 4px 0 0 0;
+  overflow: scroll;
+}
+
+.signingInput {
+  height: 100px;
+  border: 1px solid transparent;
+  border-radius: 0 0 10px 10px;
+  background-color: #ffffff;
+  margin: 0 0 10px 0;
+  padding: 0 10px;
+  cursor: url(pen.png) 1 26, pointer;
 }
 
 button {
-  height: 29.9px;
+  height: 27px;
   border: 1px solid transparent;
   border-radius: 20px;
   background-color: #ffffff;
@@ -121,7 +143,7 @@ button {
 }
 
 button:hover {
-  height: 29.9px;
+  height: 27px;
   border: 1px solid transparent;
   border-radius: 20px;
   background-color: rgb(255, 255, 255, 0.7);
@@ -132,6 +154,7 @@ button:hover {
 /* ---------- #TIP ---------- */
 
 .tipCon {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 200px;
@@ -139,7 +162,8 @@ button:hover {
   border: 2px solid #bdbdbd;
   border-radius: 10px;
   margin-bottom: 10px;
-  padding: 10px;
+  margin: 0 0 20px 0;
+  padding: 20px;
 }
 
 .tip {
@@ -147,6 +171,9 @@ button:hover {
 }
 
 .github  {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
   cursor: pointer;
 }
 

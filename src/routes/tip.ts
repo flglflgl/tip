@@ -6,13 +6,22 @@ const router = express.Router();
 // Route to GET tips
 router.get('/', async (req, res) => {
   try {
-    const query = 'SELECT * FROM Tip';
+    const query = 'SELECT * FROM Tip ORDER BY id DESC';
     pool.query(query, (error, results) => {
       if (error) {
         console.error('Error fetching tips:', error);
         return res.status(500).json({ error: 'Query error' });
       }
-      res.json(results);
+
+      // Convert BLOB (Buffer) to Base64 string
+      const formattedResults = results.map((tip: { signing: any; }) => ({
+        ...tip,
+        signing: tip.signing
+          ? `data:image/png;base64,${Buffer.from(tip.signing).toString('base64')}`
+          : null,
+      }));
+
+      res.json(formattedResults);
     });
   } catch (err) {
     console.error('Unexpected error:', err);
@@ -22,30 +31,28 @@ router.get('/', async (req, res) => {
 
 // Route to INSERT tip
 router.post('/', (req: Request, res: Response) => {
-  const { tip, github, githubURL } = req.body;
-  const id = null; // Assuming you're using an auto-increment ID in the DB
-
+  const { tip, github, githubURL, signing } = req.body;
   if (!tip) {
     res.status(400).json({ error: 'Tip is required' });
   }
 
-  const query = 'INSERT INTO Tip (id, tip, github, githubURL) VALUES (?, ?, ?, ?)';
-  
-  pool.query(query, [id, tip, github, githubURL], (error, results) => {
+  // Convert Base64 string to Buffer before storing in MySQL
+  const signingBuffer = signing ? Buffer.from(signing.split(',')[1], 'base64') : null;
+
+  const query = 'INSERT INTO Tip (tip, github, githubURL, signing) VALUES (?, ?, ?, ?)';
+  pool.query(query, [tip, github, githubURL, signingBuffer], (error, results) => {
     if (error) {
       console.error('Error adding tip:', error);
       return res.status(500).json({ error: 'Insertion error' });
     }
 
-    // After successful insertion, return the inserted data along with the generated ID
-    const newTip = {
-      tip: tip,
-      github: github,
-      githubURL: githubURL,
-      tipId: results.insertId, // The ID returned from MySQL after insertion
-    };
-
-    res.status(201).json(newTip); // Send the complete data back as a response
+    res.status(201).json({
+      tip,
+      github,
+      githubURL,
+      signing,
+      tipId: results.insertId,
+    });
   });
 });
 

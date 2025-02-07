@@ -14,11 +14,14 @@
       <form id="tipForm" action="/tip" method="POST">
 
         <!-- Tip Input required -->
-        <label for="tipp">Tip</label>
+        <div class="inputCon">
+        <label for="tip">Tip</label>
         <input id="tip" class="linput" type="text" name="tip" required />
 
         <!-- Signing Input -->
-        <canvas height="100" width="300" class="signingInput"></canvas>
+        <canvas width="299" height="100" class="signingInput"></canvas>
+        <button type="button" class="resetbtn">Reset</button>
+        </div>
 
         <!-- Github Input not required -->
         <label for="github">Github</label>
@@ -88,7 +91,7 @@ body {
   grid-template-rows: minmax(100px, 200px);
   gap: 4.9px 20px;
   color: #bdbdbd;
-  padding: 4px 20px;
+  padding: 4px 0 4px 20px;
   overflow: scroll;
 }
 
@@ -112,25 +115,50 @@ input {
   height: 22px;
   border: 1px solid transparent;
   border-radius: 10px;
+  color: #bdbdbd;
   margin: 4px 0 10px 0;
   padding: 0 10px;
 }
 
 .linput {
-  height: 29%;
+  width: 100%;
+  height: 60%;
   border-radius: 10px 10px 0 0;
   margin: 4px 0 0 0;
   overflow: scroll;
 }
 
+.inputCon {
+  position: relative;
+  width: 90%;
+  height: 49%;
+  margin: 20px 0 40px 0;
+}
+
 .signingInput {
-  height: 100px;
+  width: 100%;
+  height: 40%;
   border: 1px solid transparent;
   border-radius: 0 0 10px 10px;
   background-color: #ffffff;
   margin: 0 0 10px 0;
   padding: 0 10px;
   cursor: url(pen.png) 1 26, pointer;
+}
+
+.resetbtn {
+  position: absolute;
+  right: -10px;
+  bottom: -29px;
+  font-size: 14px;
+  border-radius: 20px;
+  color: #bdbdbd;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.resetbtn:hover {
+  color: rgba(219,219,219, 0.9)
 }
 
 button {
@@ -190,102 +218,186 @@ const form = document.getElementById('tipForm');
 const tipInput = document.getElementById('tip');
 const githubInput = document.getElementById('github');
 const githubURLInput = document.getElementById('githubURL');
+const signingInput = document.querySelector('.signingInput');
+const ctx = signingInput.getContext('2d');
 const rightColumn = document.querySelector('.rightColumn');
 
-function createTipElement(tip, github, githubURL) {
-  const tipCon = document.createElement('div');
-  tipCon.className = 'tipCon';
+let drawing = false;
 
-  const tipElement = document.createElement('div');
-  tipElement.className = 'tip';
-  tipElement.textContent = tip;
-
-  const githubElement = document.createElement('div');
-  githubElement.className = 'github';
-
-  if (github && githubURL) {
-    const link = document.createElement('a');
-    link.href = githubURL;
-    link.textContent = github;
-    link.target = '_blank'; // Open link to Github in new browser window
-    githubElement.appendChild(link);
-  } else {
-    githubElement.textContent = github;
-  }
-
-  tipCon.appendChild(tipElement);
-  tipCon.appendChild(githubElement);
-
-  return tipCon;
-}
-
-// Function to fetch tips
-async function fetchAndDisplayTips() {
-  try {
-    const response = await fetch('/tip');
-    if (!response.ok) {
-      throw new Error('Failed to fetch tips');
-    }
-    const tips = await response.json();
-
-    console.log('Fetched tips:', tips); // Debugging
-
-    // Reser .rightColumn
-    rightColumn.innerHTML = '';
-
-    // Reverse the order to show the newest tip first
-    tips.reverse().forEach(({ tip, github, githubURL }) => {
-      const tipElement = createTipElement(tip, github, githubURL);
-      rightColumn.appendChild(tipElement);
-    });
-  } catch (error) {
-    console.error('Error fetching tips:', error);
-  }
-}
-
-// Event listener for form submission
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
-
-  const tip = tipInput.value.trim();
-  const github = githubInput.value.trim();
-  const githubURL = githubURLInput.value.trim();
-
-  if (!tip) {
-    alert('Tip is required.');
-    return;
-  }
-
-  try {
-    const response = await fetch('/tip', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ tip, github, githubURL }),
-    });
-
-    const result = await response.json();
-    console.log('Response from server:', result); // Debugging
-
-    if (response.ok && result.tip) {
-      const newTipElement = createTipElement(result.tip, result.github, result.githubURL);
-
-      // Prepend the new tip to the top of the right column
-      rightColumn.insertBefore(newTipElement, rightColumn.firstChild);
-
-      // Reset form inputs
-      form.reset();
-    } else {
-      alert(`Error while submitting your tip: ${result.message || 'Unknown error'}`);
-    }
-  } catch (error) {
-    console.error('Error submitting tip:', error);
-    alert('Error occurred while submitting your tip.');
-  }
+// Start drawing when the user clicks or touches the canvas
+signingInput.addEventListener('mousedown', (e) => {
+    drawing = true;
+    const rect = signingInput.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    ctx.beginPath(); // Start a new path
+    ctx.moveTo(x, y); // Move to the initial point
 });
 
-fetchAndDisplayTips();
+// End drawing when the user releases the mouse or stops touching
+signingInput.addEventListener('mouseup', () => (drawing = false));
+signingInput.addEventListener('mouseleave', () => (drawing = false)); // Added for mouse leave case
+
+// Touch events for mobile
+signingInput.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    drawing = true;
+    const rect = signingInput.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    ctx.beginPath(); // Start a new path
+    ctx.moveTo(x, y); // Move to the initial point
+});
+
+signingInput.addEventListener('touchend', () => (drawing = false));
+signingInput.addEventListener('touchcancel', () => (drawing = false)); // Prevent touch events from going stale
+
+// Draw the lines as the user moves the mouse or finger
+signingInput.addEventListener('mousemove', draw);
+signingInput.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    draw(e);
+});
+
+// The draw function that renders the stroke
+function draw(e) {
+    if (!drawing) return;
+
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = '#dbdbdb';
+
+    const rect = signingInput.getBoundingClientRect();
+    let x, y;
+
+    // Get current mouse/touch position
+    if (e.type === 'mousemove') {
+        x = e.clientX - rect.left;
+        y = e.clientY - rect.top;
+    } else if (e.type === 'touchmove') {
+        const touch = e.touches[0];
+        x = touch.clientX - rect.left;
+        y = touch.clientY - rect.top;
+    }
+
+    // Only draw if the user is moving
+    if (drawing) {
+        ctx.lineTo(x, y); // Draw line to the current position
+        ctx.stroke(); // Render the stroke
+    }
+}
+
+const resetBtn = document.querySelector('.resetbtn');
+
+// Reset the canvas when the reset button is clicked
+resetBtn.addEventListener('click', () => {
+  ctx.clearRect(0, 0, signingInput.width, signingInput.height); // Clear the signature canvas
+});
+
+// Function to handle form submission
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const tip = tipInput.value.trim();
+    const github = githubInput.value.trim();
+    const githubURL = githubURLInput.value.trim();
+    const signing = signingInput.toDataURL(); // Capture signature as Base64 image
+
+    if (!tip) {
+        alert('Tip is required.');
+        return;
+    }
+
+    try {
+        const response = await fetch('/tip', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ tip, github, githubURL, signing }),
+        });
+
+        const result = await response.json();
+        console.log('Server response:', result); // Debugging
+
+        if (response.ok) {
+            const newTipElement = createTipElement(result.tip, result.github, result.githubURL, result.signing);
+
+            // Prepend the new tip to the top of the list
+            rightColumn.insertBefore(newTipElement, rightColumn.firstChild);
+
+            // Reset form inputs
+            form.reset();
+            ctx.clearRect(0, 0, signingInput.width, signingInput.height); // Clear signature canvas
+        } else {
+            alert(result.error || 'Unknown error');
+        }
+    } catch (error) {
+        console.error('Error submitting tip:', error);
+        alert('Error occurred while submitting your tip.');
+    }
+});
+
+// Function to create a new tip element
+function createTipElement(tip, github, githubURL, signing) {
+    const tipCon = document.createElement('div');
+    tipCon.className = 'tipCon';
+
+    const tipElement = document.createElement('div');
+    tipElement.className = 'tip';
+    tipElement.textContent = tip;
+
+    const githubElement = document.createElement('div');
+    githubElement.className = 'github';
+
+    if (github && githubURL) {
+        const link = document.createElement('a');
+        link.href = githubURL;
+        link.textContent = github;
+        link.target = '_blank';
+        githubElement.appendChild(link);
+    } else {
+        githubElement.textContent = github;
+    }
+
+    tipCon.appendChild(tipElement);
+    tipCon.appendChild(githubElement);
+
+    if (signing) {
+        console.log("Rendering Image:", signing); // Debugging
+        const img = document.createElement('img');
+        img.src = signing; // Now it will have the correct Base64 format
+        img.style.width = '100%';
+
+        tipCon.appendChild(img);
+    }
+
+    return tipCon;
+}
+
+document.addEventListener('DOMContentLoaded', fetchTips);
+
+async function fetchTips() {
+    try {
+        const response = await fetch('/tip');
+        const tips = await response.json();
+
+        rightColumn.innerHTML = ''; // Clear previous content
+
+        tips.forEach((tipData) => {
+            const newTipElement = createTipElement(
+                tipData.tip, 
+                tipData.github, 
+                tipData.githubURL, 
+                tipData.signing
+            );
+            rightColumn.appendChild(newTipElement);
+        });
+    } catch (error) {
+        console.error('Error fetching tips:', error);
+    }
+}
 
 </script>
 </body>

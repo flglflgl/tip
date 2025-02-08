@@ -1,26 +1,34 @@
 import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import githubRoutes from './routes/githubRoutes.js';
+import tipRoutes from './routes/tipRoutes.js';
 import path from 'path';
-import tipRoutes from './routes/tip';
+import { fileURLToPath } from 'url';
 
+dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Middleware to parse JSON and URL-encoded data
+// Fix for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Middleware
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// Serve static files (CSS, JS, etc.)
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files
+const publicPath = path.join(__dirname, 'public');
+app.use(express.static(publicPath));
 
-// Routes for handling tips
+// Use the routes
 app.use('/tip', tipRoutes);
+app.use('/github', githubRoutes);
 
-// Route to serve the HTML on /
+// Catch-all route to serve index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

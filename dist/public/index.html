@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,41 +8,66 @@
 
 <body>
   <div class="grid">
-    <div class="leftColumn">
-
       <!-- Form to submit tips -->
       <form id="tipForm" action="/tip" method="POST">
 
         <!-- Tip Input required -->
-        <div class="inputCon">
         <label for="tip">Tip</label>
+        <div class="inputCon">
         <input id="tip" class="linput" type="text" name="tip" required />
 
         <!-- Signing Input -->
-        <canvas width="299" height="100" class="signingInput"></canvas>
+        <canvas class="signingInput"></canvas>
         <button type="button" class="resetbtn">Reset</button>
         </div>
 
-        <!-- Github Input not required -->
-        <label for="github">Github</label>
-        <input id="github" type="text" name="github" />
+        <div class="buttonGroup">
+          <button id="githubbtn" type="button">Login to Github</button>
+          <button type="button">Post without Github</button>
+        </div>
+      </form></br></br>
 
-        <!-- Github URL -->
-        <label for="githubURL">Github URL</label>
-        <input id="githubURL" type="url" name="githubURL" />
-
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-
-    <div class="rightColumn">
+    <div class="postGrid">
       <!-- Tips will be shown here -->
     </div>
   </div>
 
+  <!-- Top (fix position not in grid) -->
+<div class="top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px" height="40px">
+    <defs>
+      <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448" id="gradient-0">
+        <stop offset="0" style="stop-color: rgb(90% 90% 90%)" />
+        <stop offset="1" style="stop-color: rgb(119,119,119)" />
+      </linearGradient>
+    </defs>
+    <rect style="stroke: url(&quot;#gradient-0&quot;); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(119,119,119);" x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
+  </svg>
+  
+  <ul>
+    <li>l@icloud.com</li>
+    <a href="#skills">
+      <li>Skills</li>
+    </a>
+    <li>Tips</li>
+  </ul>
+  </div>
+
+  <!-- Bottom (fix position not in grid) -->
+<div class="bottom">
+  <ul>
+    <li>git</li>
+    <li>lin</li>
+  </ul>
+</div>
+
   <style>
 
     /*
+    **
+    ** Top
+    **
+    ** Bottom
     **
     ** Grid
     **
@@ -50,57 +75,90 @@
     **
     ** Tip
     **
+    ** Cursor
+    **
+    ** Helpers
+    **
     */
 
-    * {
+* {
   margin: 0;
   padding: 0;
 }
 
 body {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: system-ui;
+  font-size: 2.9vh;
+  color: #777777;
+  height: 100vh;
 }
+
+/* ---------- #TOP ---------- */
+  
+.top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 20px 40px;
+    z-index: 100;
+  }
+  
+  .top li {
+    float: left;
+    margin: 0 20px 0 0;
+  }
+  
+  /* ---------- #BOTTOM ---------- */
+  
+  .bottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+  }
+  
+  .bottom li {
+    float: right;
+    font-family: monospace;
+    margin: 0 20px 24px 0;
+  }
 
 /* ---------- #GRID ---------- */
 
 .grid {
-  width: 90vw;
-  height: 90vh;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 20px;
-  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  width: 70vw;
+  height: 70vh;
+  border: 1px solid #777777;
+  overflow: scroll;
 }
 
-.leftColumn {
+.topRow {
   border: 1px solid transparent;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background-image: url('bdbdbd.png');
   color: #ffffff;
   padding: 20px;
 }
 
-.rightColumn {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: minmax(100px, 200px);
-  gap: 4.9px 20px;
+.postGrid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   color: #bdbdbd;
-  padding: 4px 0 4px 20px;
-  overflow: scroll;
-}
-
-.rightColumn .tipCon:nth-child(3) {
-  margin-top: 65px;
-}
-
-.rightColumn .tipCon:nth-child(4) {
-  margin-top: 65px;
 }
 
 /* ---------- #FORM ---------- */
@@ -108,75 +166,93 @@ body {
 form {
   display: flex;
   flex-direction: column;
-  height: 80vh;
+}
+
+label {
+  color: #bdbdbd;
+  margin: 0 10px;
 }
 
 input {
   height: 22px;
-  border: 1px solid transparent;
+  border: 1px solid #cccccc;
   border-radius: 10px;
   color: #bdbdbd;
   margin: 4px 0 10px 0;
   padding: 0 10px;
 }
 
+input:focus{
+    outline: none;
+}
+
 .linput {
-  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 60%;
+  border: 1px solid #cccccc;
+  border-bottom: none;
   border-radius: 10px 10px 0 0;
-  margin: 4px 0 0 0;
   overflow: scroll;
 }
 
 .inputCon {
   position: relative;
-  width: 90%;
-  height: 49%;
-  margin: 20px 0 40px 0;
+  width: 70vw;
+  height: 20vh;
 }
 
 .signingInput {
-  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: calc(100% - 1.9px);
   height: 40%;
-  border: 1px solid transparent;
+  border: 1px solid #cccccc;
+  border-top: none;
   border-radius: 0 0 10px 10px;
   background-color: #ffffff;
-  margin: 0 0 10px 0;
-  padding: 0 10px;
   cursor: url(pen.png) 1 26, pointer;
 }
 
 .resetbtn {
   position: absolute;
-  right: -10px;
-  bottom: -29px;
-  font-size: 14px;
-  border-radius: 20px;
+  right: 10px;
+  bottom: 10px;
+  font-size: 12px;
+  background: none;
   color: #bdbdbd;
   padding: 4px 10px;
   cursor: pointer;
 }
 
 .resetbtn:hover {
-  color: rgba(219,219,219, 0.9)
+  background: none;
+  color: rgb(219,219,219,0.7);
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  width: 240px;
+  margin: 10px 7px;
 }
 
 button {
   height: 27px;
   border: 1px solid transparent;
   border-radius: 20px;
-  background-color: #ffffff;
-  color: #bdbdbd;
-  margin: 12.9px 0;
+  background-color: #dbdbdb;
+  color: #ffffff;
+  padding: 0 10px;
+  cursor: pointer;
 }
 
 button:hover {
-  height: 27px;
-  border: 1px solid transparent;
-  border-radius: 20px;
-  background-color: rgb(255, 255, 255, 0.7);
-  color: #bdbdbd;
-  margin: 12.9px 0;
+  background-color: rgb(219,219,219,0.7);
 }
 
 /* ---------- #TIP ---------- */
@@ -185,9 +261,8 @@ button:hover {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 200px;
-  min-height: 100px;
-  border: 2px solid #bdbdbd;
+  height: 100px;
+  border: 1px solid #bdbdbd;
   border-radius: 10px;
   margin-bottom: 10px;
   margin: 0 0 20px 0;
@@ -205,14 +280,83 @@ button:hover {
   cursor: pointer;
 }
 
-a {
+.github a {
   color: #bdbdbd;
   text-decoration: none;
 }
 
+ /* ---------- #CURSOR ---------- */
+  
+ .cursor {
+    position: absolute;
+    height: 7vh;
+    aspect-ratio: 4/10;
+    border-radius: 20px;
+    background-color: rgba(119, 119, 119, 0.29);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s linear;
+  }
+
+/* ---------- #HELPERS ---------- */
+
+h1 {
+    font-size: 4.9vh;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #777777;
+    cursor: none;
+  }
+  
+  p {
+    margin: 4.9px 0;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+
 </style>
 
 <script>
+
+  // Custom Cursor
+  document.addEventListener("DOMContentLoaded", () => {
+    // Create the cursor element
+    const cursor = document.createElement("div");
+    cursor.classList.add("cursor");
+    document.body.appendChild(cursor);
+
+    // Ensure the cursor is displayed
+    cursor.style.display = "block";
+
+    // Update cursor position
+    document.addEventListener("mousemove", (e) => {
+        const offsetX = 10; // Adjust for positioning
+        const offsetY = 10;
+        
+        cursor.style.left = `${e.pageX + offsetX}px`;
+        cursor.style.top = `${e.pageY + offsetY}px`;
+    });
+
+    // Hide the default cursor
+    document.body.style.cursor = "none";
+});
+
+// Log in to Github
+document.getElementById('githubbtn').addEventListener('click', function () {
+    const clientId = 'YOUR_GITHUB_CLIENT_ID'; // Replace with your GitHub OAuth App Client ID
+    const redirectUri = 'YOUR_REDIRECT_URI'; // Replace with your redirect URI
+    const scope = 'read:user user:email'; // Adjust scopes as needed
+
+    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
+
+    window.location.href = githubAuthUrl; // Redirect to GitHub OAuth
+});
+
+// Form submission
 
 const form = document.getElementById('tipForm');
 const tipInput = document.getElementById('tip');
@@ -220,23 +364,22 @@ const githubInput = document.getElementById('github');
 const githubURLInput = document.getElementById('githubURL');
 const signingInput = document.querySelector('.signingInput');
 const ctx = signingInput.getContext('2d');
-const rightColumn = document.querySelector('.rightColumn');
+const postGrid = document.querySelector('.postGrid');
 
 let drawing = false;
 
-// Start drawing when the user clicks or touches the canvas
+// Mousedown event for desktop
 signingInput.addEventListener('mousedown', (e) => {
     drawing = true;
     const rect = signingInput.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    ctx.beginPath(); // Start a new path
-    ctx.moveTo(x, y); // Move to the initial point
+    ctx.beginPath();
+    ctx.moveTo(x, y);
 });
 
-// End drawing when the user releases the mouse or stops touching
 signingInput.addEventListener('mouseup', () => (drawing = false));
-signingInput.addEventListener('mouseleave', () => (drawing = false)); // Added for mouse leave case
+signingInput.addEventListener('mouseleave', () => (drawing = false));
 
 // Touch events for mobile
 signingInput.addEventListener('touchstart', (e) => {
@@ -246,21 +389,19 @@ signingInput.addEventListener('touchstart', (e) => {
     const touch = e.touches[0];
     const x = touch.clientX - rect.left;
     const y = touch.clientY - rect.top;
-    ctx.beginPath(); // Start a new path
-    ctx.moveTo(x, y); // Move to the initial point
+    ctx.beginPath();
+    ctx.moveTo(x, y);
 });
 
 signingInput.addEventListener('touchend', () => (drawing = false));
-signingInput.addEventListener('touchcancel', () => (drawing = false)); // Prevent touch events from going stale
+signingInput.addEventListener('touchcancel', () => (drawing = false));
 
-// Draw the lines as the user moves the mouse or finger
 signingInput.addEventListener('mousemove', draw);
 signingInput.addEventListener('touchmove', (e) => {
     e.preventDefault();
     draw(e);
 });
 
-// The draw function that renders the stroke
 function draw(e) {
     if (!drawing) return;
 
@@ -281,21 +422,19 @@ function draw(e) {
         y = touch.clientY - rect.top;
     }
 
-    // Only draw if the user is moving
     if (drawing) {
-        ctx.lineTo(x, y); // Draw line to the current position
+        ctx.lineTo(x, y);
         ctx.stroke(); // Render the stroke
     }
 }
 
 const resetBtn = document.querySelector('.resetbtn');
 
-// Reset the canvas when the reset button is clicked
 resetBtn.addEventListener('click', () => {
-  ctx.clearRect(0, 0, signingInput.width, signingInput.height); // Clear the signature canvas
+  ctx.clearRect(0, 0, signingInput.width, signingInput.height); // Reset .signingInput
 });
 
-// Function to handle form submission
+// Form submission
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -325,7 +464,7 @@ form.addEventListener('submit', async (event) => {
             const newTipElement = createTipElement(result.tip, result.github, result.githubURL, result.signing);
 
             // Prepend the new tip to the top of the list
-            rightColumn.insertBefore(newTipElement, rightColumn.firstChild);
+            postGrid.insertBefore(newTipElement, postGrid.firstChild);
 
             // Reset form inputs
             form.reset();
@@ -367,7 +506,7 @@ function createTipElement(tip, github, githubURL, signing) {
     if (signing) {
         console.log("Rendering Image:", signing); // Debugging
         const img = document.createElement('img');
-        img.src = signing; // Now it will have the correct Base64 format
+        img.src = signing;
         img.style.width = '100%';
 
         tipCon.appendChild(img);
@@ -383,7 +522,7 @@ async function fetchTips() {
         const response = await fetch('/tip');
         const tips = await response.json();
 
-        rightColumn.innerHTML = ''; // Clear previous content
+        postGrid.innerHTML = ''; // Reset previous content
 
         tips.forEach((tipData) => {
             const newTipElement = createTipElement(
@@ -392,7 +531,7 @@ async function fetchTips() {
                 tipData.githubURL, 
                 tipData.signing
             );
-            rightColumn.appendChild(newTipElement);
+            postGrid.appendChild(newTipElement);
         });
     } catch (error) {
         console.error('Error fetching tips:', error);
@@ -401,4 +540,5 @@ async function fetchTips() {
 
 </script>
 </body>
+
 </html>

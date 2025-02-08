@@ -1,13 +1,7 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.sqlCon = void 0;
-const mysql_1 = __importDefault(require("mysql"));
-const dotenv_1 = __importDefault(require("dotenv"));
+import mysql from 'mysql';
+import dotenv from 'dotenv';
 // Load environment variables from .env file
-dotenv_1.default.config();
+dotenv.config();
 // Access environment variables
 const DB_HOST = process.env.DB_HOST;
 const DB_USER = process.env.DB_USER;
@@ -15,7 +9,7 @@ const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_NAME = process.env.DB_NAME;
 const DB_PORT = Number(process.env.DB_PORT) || 3306;
 // Create a connection pool
-const pool = mysql_1.default.createPool({
+const pool = mysql.createPool({
     host: DB_HOST,
     user: DB_USER,
     password: DB_PASSWORD,
@@ -26,7 +20,7 @@ const pool = mysql_1.default.createPool({
     queueLimit: 0,
 });
 // Helper function to test the connection
-const sqlCon = () => {
+export const sqlCon = () => {
     pool.getConnection((err, connection) => {
         if (err) {
             console.error('MySQL connection error:', err);
@@ -36,5 +30,4 @@ const sqlCon = () => {
         connection.release(); // Release the connection back to the pool
     });
 };
-exports.sqlCon = sqlCon;
-exports.default = pool;
+export default pool;

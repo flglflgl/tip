@@ -1,8 +1,9 @@
 import express, { Request, Response } from 'express';
-import pool from '../config/db';
+import pool from '../config/db.js';
 
 const router = express.Router();
 
+// Route to GET tips
 // Route to GET tips
 router.get('/', async (req, res) => {
   try {
@@ -40,7 +41,7 @@ router.post('/', (req: Request, res: Response) => {
   const signingBuffer = signing ? Buffer.from(signing.split(',')[1], 'base64') : null;
 
   const query = 'INSERT INTO Tip (tip, github, githubURL, signing) VALUES (?, ?, ?, ?)';
-  pool.query(query, [tip, github, githubURL, signingBuffer], (error, results) => {
+  pool.query(query, [tip, github, githubURL, signingBuffer], (error: any, results: { insertId: any; }) => {
     if (error) {
       console.error('Error adding tip:', error);
       return res.status(500).json({ error: 'Insertion error' });
@@ -61,7 +62,7 @@ router.delete('/:id', (req, res) => {
   const { id } = req.params;
 
   const query = 'DELETE FROM Tip WHERE id = ?';
-  pool.query(query, [id], (error, results) => {
+  pool.query(query, [id], (error: any, results: { affectedRows: number; }) => {
     if (error) {
       console.error('Error deleting tip:', error);
       return res.status(500).json({ error: 'Deletion error' });

@@ -1,25 +1,27 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const path_1 = __importDefault(require("path"));
-const tip_1 = __importDefault(require("./routes/tip"));
-const app = (0, express_1.default)();
-const PORT = process.env.PORT || 3000;
-// Middleware to parse JSON and URL-encoded data
-app.use(express_1.default.json());
-app.use(express_1.default.urlencoded({ extended: true }));
-// Serve static files (CSS, JS, etc.)
-app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
-// Routes for handling tips
-app.use('/tip', tip_1.default);
-// Route to serve the HTML on /
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import githubRoutes from './routes/githubRoutes.js';
+import tipRoutes from './routes/tipRoutes.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+dotenv.config();
+const app = express();
+// Fix for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Middleware
+app.use(cors());
+app.use(express.json());
+// Serve static files
+const publicPath = path.join(__dirname, 'public');
+app.use(express.static(publicPath));
+// Use the routes
+app.use('/tip', tipRoutes);
+app.use('/github', githubRoutes);
+// Catch-all route to serve index.html
 app.get('/', (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(publicPath, 'index.html'));
 });
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

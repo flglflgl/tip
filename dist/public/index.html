@@ -347,11 +347,12 @@ h1 {
 
 // Log in to Github
 document.getElementById('githubbtn').addEventListener('click', function () {
-    const clientId = 'YOUR_GITHUB_CLIENT_ID'; // Replace with your GitHub OAuth App Client ID
-    const redirectUri = 'YOUR_REDIRECT_URI'; // Replace with your redirect URI
+    const clientId = '83ad6df070481458e7adadde741d8f4fde1d011b'; // Replace with your GitHub OAuth App Client ID
+    const redirectUri = 'http://localhost:3000/github/callback'; // Replace with your redirect URI
     const scope = 'read:user user:email'; // Adjust scopes as needed
 
-    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
+    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}`;
+
 
     window.location.href = githubAuthUrl; // Redirect to GitHub OAuth
 });

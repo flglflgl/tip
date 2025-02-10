@@ -19,6 +19,9 @@ app.use(express.static(publicPath));
 // Use the routes
 app.use('/tip', tipRoutes);
 app.use('/github', githubRoutes);
+app.get('/logout', (req, res) => {
+    res.redirect('/');
+});
 // Catch-all route to serve index.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));

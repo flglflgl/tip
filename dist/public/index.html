@@ -8,6 +8,8 @@
 
 <body>
   <div class="grid">
+      <h1>Tips</h1>
+
       <!-- Form to submit tips -->
       <form id="tipForm" action="/tip" method="POST">
 
@@ -23,8 +25,11 @@
 
         <div class="buttonGroup">
           <button id="githubbtn" type="button">Login to Github</button>
-          <button type="button">Post without Github</button>
+          <button id="subbtn" type="submit">Post without Github</button>
         </div>
+
+        <input type="hidden" id="githubInput" name="github">
+        <input type="hidden" id="githubURLInput" name="githubURL">
       </form></br></br>
 
     <div class="postGrid">
@@ -143,22 +148,21 @@ body {
   justify-content: center;
   width: 70vw;
   height: 70vh;
-  border: 1px solid #777777;
-  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-.topRow {
-  border: 1px solid transparent;
-  border-radius: 20px;
-  color: #ffffff;
-  padding: 20px;
+.grid::-webkit-scrollbar {
+  display: none;
 }
 
 .postGrid {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  color: #bdbdbd;
+  width: 70vw;
+  color: #777777;
 }
 
 /* ---------- #FORM ---------- */
@@ -169,15 +173,15 @@ form {
 }
 
 label {
-  color: #bdbdbd;
+  color: #777777;
   margin: 0 10px;
 }
 
 input {
   height: 22px;
-  border: 1px solid #cccccc;
+  border: 1px solid #777777;
   border-radius: 10px;
-  color: #bdbdbd;
+  color: #777777;
   margin: 4px 0 10px 0;
   padding: 0 10px;
 }
@@ -191,16 +195,18 @@ input:focus{
   top: 0;
   left: 0;
   right: 0;
+  width: calc(70vw - 1.9px);
   height: 60%;
-  border: 1px solid #cccccc;
+  border: 1px solid #777777;
   border-bottom: none;
   border-radius: 10px 10px 0 0;
   overflow: scroll;
+  box-sizing: border-box;
 }
 
 .inputCon {
   position: relative;
-  width: 70vw;
+  width: calc(70vw - 1px);
   height: 20vh;
 }
 
@@ -209,13 +215,14 @@ input:focus{
   left: 0;
   right: 0;
   bottom: 0;
-  width: calc(100% - 1.9px);
+  width: calc(70vw - 1.9px);
   height: 40%;
-  border: 1px solid #cccccc;
+  border: 1px solid #777777;
   border-top: none;
   border-radius: 0 0 10px 10px;
   background-color: #ffffff;
   cursor: url(pen.png) 1 26, pointer;
+  box-sizing: border-box;
 }
 
 .resetbtn {
@@ -224,20 +231,20 @@ input:focus{
   bottom: 10px;
   font-size: 12px;
   background: none;
-  color: #bdbdbd;
+  color: #777777;
   padding: 4px 10px;
   cursor: pointer;
 }
 
 .resetbtn:hover {
   background: none;
-  color: rgb(219,219,219,0.7);
+  color: rgb(119,119,119,0.7);
 }
 
 .buttonGroup {
   display: flex;
-  justify-content: space-between;
-  width: 240px;
+  gap: 10px; /* Adds 10px space between buttons */
+  width: fit-content; /* Adjusts width to fit content */
   margin: 10px 7px;
 }
 
@@ -245,14 +252,14 @@ button {
   height: 27px;
   border: 1px solid transparent;
   border-radius: 20px;
-  background-color: #dbdbdb;
+  background-color: #777777;
   color: #ffffff;
   padding: 0 10px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: rgb(219,219,219,0.7);
+  background-color: rgb(119,119,119,0.7);
 }
 
 /* ---------- #TIP ---------- */
@@ -261,12 +268,15 @@ button:hover {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100px;
-  border: 1px solid #bdbdbd;
+  width: calc(100% - 1px);
+  min-height: 100px;
+  border: 1px solid #777777;
   border-radius: 10px;
   margin-bottom: 10px;
   margin: 0 0 20px 0;
   padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .tip {
@@ -281,7 +291,7 @@ button:hover {
 }
 
 .github a {
-  color: #bdbdbd;
+  color: #777777;
   text-decoration: none;
 }
 
@@ -292,7 +302,7 @@ button:hover {
     height: 7vh;
     aspect-ratio: 4/10;
     border-radius: 20px;
-    background-color: rgba(119, 119, 119, 0.29);
+    background-color: rgba(119, 119, 119, 0.1);
     pointer-events: none;
     transform: translate(-50%, -50%);
     transition: transform 0.08s linear;
@@ -301,13 +311,14 @@ button:hover {
 /* ---------- #HELPERS ---------- */
 
 h1 {
-    font-size: 4.9vh;
+    font-size: 2.9vh;
+    margin: 20px 10px 100px 10px;
   }
   
   a {
     text-decoration: none;
     color: #777777;
-    cursor: none;
+    cursor: pointer;
   }
   
   p {
@@ -321,6 +332,36 @@ h1 {
 </style>
 
 <script>
+  //
+function getQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        githubUser: params.get('github_user'),
+        githubURL: params.get('github_url')
+    };
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const { githubUser, githubURL } = getQueryParams();
+
+    if (githubUser && githubURL) {
+        document.getElementById('githubInput').value = githubUser;
+        document.getElementById('githubURLInput').value = githubURL;
+
+        console.log(`Logged in as: ${githubUser}, Profile: ${githubURL}`);
+
+    const githubbtn = document.getElementById('githubbtn');
+    const subbtn = document.getElementById('subbtn');
+    if (githubbtn) {
+         subbtn.innerHTML = 'Post';
+        githubbtn.innerHTML = 'Logout';
+        githubbtn.onclick = function () {
+          window.location.href = '/logout'; // Redirect to /logout route
+        };
+    }
+    }
+});
+
 
   // Custom Cursor
   document.addEventListener("DOMContentLoaded", () => {
@@ -341,7 +382,6 @@ h1 {
         cursor.style.top = `${e.pageY + offsetY}px`;
     });
 
-    // Hide the default cursor
     document.body.style.cursor = "none";
 });
 
@@ -357,14 +397,22 @@ document.getElementById('githubbtn').addEventListener('click', function () {
 });
 
 // Form submission
-
 const form = document.getElementById('tipForm');
 const tipInput = document.getElementById('tip');
-const githubInput = document.getElementById('github');
-const githubURLInput = document.getElementById('githubURL');
+const githubInput = document.getElementById('githubInput');
+const githubURLInput = document.getElementById('githubURLInput');
 const signingInput = document.querySelector('.signingInput');
 const ctx = signingInput.getContext('2d');
 const postGrid = document.querySelector('.postGrid');
+
+// Explicitly set .signingInput dimensions
+signingInput.width = signingInput.clientWidth;
+signingInput.height = signingInput.clientHeight;
+
+window.addEventListener('resize', () => {
+    signingInput.width = signingInput.clientWidth;
+    signingInput.height = signingInput.clientHeight;
+});
 
 let drawing = false;
 
@@ -405,9 +453,9 @@ signingInput.addEventListener('touchmove', (e) => {
 function draw(e) {
     if (!drawing) return;
 
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1;
     ctx.lineCap = 'round';
-    ctx.strokeStyle = '#dbdbdb';
+    ctx.strokeStyle = '#777777';
 
     const rect = signingInput.getBoundingClientRect();
     let x, y;
@@ -436,16 +484,28 @@ resetBtn.addEventListener('click', () => {
 
 // Form submission
 form.addEventListener('submit', async (event) => {
+    console.log('Submitting form with:');
+    console.log('GitHub:', githubInput.value);
+    console.log('GitHub URL:', githubURLInput.value);
     event.preventDefault();
 
     const tip = tipInput.value.trim();
-    const github = githubInput.value.trim();
-    const githubURL = githubURLInput.value.trim();
     const signing = signingInput.toDataURL(); // Capture signature as Base64 image
 
     if (!tip) {
         alert('Tip is required.');
         return;
+    }
+
+    // Prepare request body
+    const requestBody = { tip, signing };
+
+    // Include GitHub fields only if they have values
+    if (githubInput?.value.trim()) {
+        requestBody.github = githubInput.value.trim();
+    }
+    if (githubURLInput?.value.trim()) {
+        requestBody.githubURL = githubURLInput.value.trim();
     }
 
     try {
@@ -454,21 +514,25 @@ form.addEventListener('submit', async (event) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ tip, github, githubURL, signing }),
+            body: JSON.stringify(requestBody),
         });
 
         const result = await response.json();
-        console.log('Server response:', result); // Debugging
+        console.log('Server response:', result);
 
         if (response.ok) {
-            const newTipElement = createTipElement(result.tip, result.github, result.githubURL, result.signing);
+            const newTipElement = createTipElement(
+                result.tip,
+                result.github || '',
+                result.githubURL || '',
+                result.signing
+            );
 
-            // Prepend the new tip to the top of the list
             postGrid.insertBefore(newTipElement, postGrid.firstChild);
 
             // Reset form inputs
             form.reset();
-            ctx.clearRect(0, 0, signingInput.width, signingInput.height); // Clear signature canvas
+            ctx.clearRect(0, 0, signingInput.width, signingInput.height);
         } else {
             alert(result.error || 'Unknown error');
         }
@@ -477,6 +541,7 @@ form.addEventListener('submit', async (event) => {
         alert('Error occurred while submitting your tip.');
     }
 });
+
 
 // Function to create a new tip element
 function createTipElement(tip, github, githubURL, signing) {
@@ -504,10 +569,14 @@ function createTipElement(tip, github, githubURL, signing) {
     tipCon.appendChild(githubElement);
 
     if (signing) {
-        console.log("Rendering Image:", signing); // Debugging
+        console.log("Rendering Img:", signing); // Debugging
         const img = document.createElement('img');
         img.src = signing;
-        img.style.width = '100%';
+        img.style.width = '20%';
+        img.style.height = '100px';
+        img.style.position = 'absolute';
+        img.style.right = '10px';
+        img.style.bottom = '10px';
 
         tipCon.appendChild(img);
     }

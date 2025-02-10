@@ -32,12 +32,16 @@ router.get('/', async (req, res) => {
 
 // Route to INSERT tip
 router.post('/', (req: Request, res: Response) => {
+  console.log('Received POST request:', req.body);
+  
   const { tip, github, githubURL, signing } = req.body;
+  
   if (!tip) {
     res.status(400).json({ error: 'Tip is required' });
   }
 
-  // Convert Base64 string to Buffer before storing in MySQL
+  console.log(`Saving to DB: Tip=${tip}, GitHub=${github}, GitHubURL=${githubURL}`);
+
   const signingBuffer = signing ? Buffer.from(signing.split(',')[1], 'base64') : null;
 
   const query = 'INSERT INTO Tip (tip, github, githubURL, signing) VALUES (?, ?, ?, ?)';
@@ -47,13 +51,7 @@ router.post('/', (req: Request, res: Response) => {
       return res.status(500).json({ error: 'Insertion error' });
     }
 
-    res.status(201).json({
-      tip,
-      github,
-      githubURL,
-      signing,
-      tipId: results.insertId,
-    });
+    res.status(201).json({ tip, github, githubURL, signing, tipId: results.insertId });
   });
 });
 

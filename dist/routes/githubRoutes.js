@@ -6,12 +6,13 @@ const router = express.Router();
 const CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 const REDIRECT_URI = process.env.GITHUB_REDIRECT_URI;
-router.get('/auth/github', (req, res) => {
+// GitHub login
+router.get('/github', (req, res) => {
     const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=read:user user:email`;
     res.redirect(githubAuthUrl);
 });
-// Handle GitHub callback
-router.get('/auth/github/callback', async (req, res) => {
+// GitHub callback
+router.get('/callback', async (req, res) => {
     const code = req.query.code;
     if (!code) {
         res.status(400).send('GitHub authentication failed. No code received.');
@@ -29,12 +30,12 @@ router.get('/auth/github/callback', async (req, res) => {
             res.status(400).send('Failed to get access token');
             return;
         }
-        // Fetch user data from GitHub
         const userResponse = await fetch('https://api.github.com/user', {
             headers: { Authorization: `Bearer ${accessToken}` },
         });
         const user = (await userResponse.json());
-        res.send(`Hello, ${user.login}!`);
+        // Redirect to index.html
+        res.redirect(`/?github_user=${user.login}&github_url=${encodeURIComponent(user.html_url)}`);
     }
     catch (error) {
         console.error('GitHub OAuth Error:', error);

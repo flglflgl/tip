@@ -9,13 +9,14 @@ const CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 const REDIRECT_URI = process.env.GITHUB_REDIRECT_URI;
 
-router.get('/auth/github', (req: Request, res: Response) => {
+// GitHub login
+router.get('/github', (req: Request, res: Response) => {
     const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=read:user user:email`;
     res.redirect(githubAuthUrl);
 });
 
-// Handle GitHub callback
-router.get('/auth/github/callback', async (req: Request, res: Response): Promise<void> => {
+// GitHub callback
+router.get('/callback', async (req: Request, res: Response) => {
     const code = req.query.code as string;
 
     if (!code) {
@@ -32,11 +33,9 @@ router.get('/auth/github/callback', async (req: Request, res: Response): Promise
 
         interface GitHubTokenResponse {
             access_token: string;
-            token_type: string;
-            scope: string;
-          }
-          
-        const data = (await response.json()) as GitHubTokenResponse
+        }
+
+        const data = (await response.json()) as GitHubTokenResponse;
         const accessToken = data.access_token;
 
         if (!accessToken) {
@@ -44,22 +43,20 @@ router.get('/auth/github/callback', async (req: Request, res: Response): Promise
             return;
         }
 
-        // Fetch user data from GitHub
         const userResponse = await fetch('https://api.github.com/user', {
             headers: { Authorization: `Bearer ${accessToken}` },
         });
 
         interface GitHubUser {
             login: string;
-            id: number;
             avatar_url: string;
             html_url: string;
-            name?: string;
-            email?: string;
-          }
-          
-        const user = (await userResponse.json()) as GitHubUser
-        res.send(`Hello, ${user.login}!`);
+        }
+
+        const user = (await userResponse.json()) as GitHubUser;
+
+        // Redirect to index.html
+        res.redirect(`/?github_user=${user.login}&github_url=${encodeURIComponent(user.html_url)}`);
     } catch (error) {
         console.error('GitHub OAuth Error:', error);
         res.status(500).send('Internal Server Error');

@@ -4,7 +4,6 @@ import pool from '../config/db.js';
 const router = express.Router();
 
 // Route to GET tips
-// Route to GET tips
 router.get('/', async (req, res) => {
   try {
     const query = 'SELECT * FROM Tip ORDER BY id DESC';
@@ -14,7 +13,7 @@ router.get('/', async (req, res) => {
         return res.status(500).json({ error: 'Query error' });
       }
 
-      // Convert BLOB (Buffer) to Base64 string
+      // Convert BLOB to Base64 string
       const formattedResults = results.map((tip: { signing: any; }) => ({
         ...tip,
         signing: tip.signing
@@ -40,14 +39,12 @@ router.post('/', (req: Request, res: Response) => {
     res.status(400).json({ error: 'Tip is required' });
   }
 
-  console.log(`Saving to DB: Tip=${tip}, GitHub=${github}, GitHubURL=${githubURL}`);
-
   const signingBuffer = signing ? Buffer.from(signing.split(',')[1], 'base64') : null;
 
   const query = 'INSERT INTO Tip (tip, github, githubURL, signing) VALUES (?, ?, ?, ?)';
   pool.query(query, [tip, github, githubURL, signingBuffer], (error: any, results: { insertId: any; }) => {
     if (error) {
-      console.error('Error adding tip:', error);
+      console.error('Error inserting tip:', error);
       return res.status(500).json({ error: 'Insertion error' });
     }
 

@@ -1,1221 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheet/index.css">
   <link rel="icon" href="img/logo.png?">
   <title>Sarah Portfolio</title>
 </head>
 
 <body>
+
+  <!-- Grid -->
   <div class="grid">
+
+    <!-- Column (empty) -->
     <div class="col"></div>
 
     <div class="col">
+
+      <!-- Introduction -->
       <div class="mid">
-      <h1>Tips</h1>
-      <p>Thank you for visiting my portfolio. If you stumbled on kludge on my Github or you've good coding tips feel free to post them here.
-        I'd love to know your thoughts whether it be coding tips or suggestions on how to improve my portfolio.
-      </p>
+        <h1>Tips</h1>
+        <p>Thank you for visiting my portfolio. If you stumbled on kludge on my Github or you've good coding tips feel
+          free to post them here.
+          I'd love to know your thoughts whether it be coding tips or suggestions on how to improve my portfolio.
+        </p>
 
-      <!-- Form to submit tips -->
-      <div class="logInput"></div>
-      <form id="tipForm" action="/tip" method="POST">
+        <!-- Form to submit tips -->
+        <div class="logInput"></div>
+        <form id="tipForm" action="/tip" method="POST">
 
-        <!-- Tip Input required -->
-        <div class="inputCon">
-        <input id="tip" class="linput" type="text" name="tip" required />
+          <!-- Tip Input required -->
+          <div class="inputCon">
+            <input id="tip" class="linput" type="text" name="tip" required />
 
-        <!-- Signing Input -->
-        <canvas class="signingInput"></canvas>
-        <button type="button" class="resetbtn">Reset</button>
+            <!-- Signing Input -->
+            <canvas class="signingInput"></canvas>
+            <button type="button" class="resetbtn">Reset</button>
+          </div>
+
+          <!-- Button Group -->
+          <div class="buttonGroup">
+            <button id="githubbtn" type="button"><span>Log into Github</span></button>
+            <button id="subbtn" type="submit"><span>Post without Github</span></button>
+          </div>
+
+          <!-- Inputs for User info fetched from Github -->
+          <input type="hidden" id="githubInput" name="github">
+          <input type="hidden" id="githubURLInput" name="githubURL">
+        </form></br></br>
+
+        <!-- Post Grid -->
+        <div class="postGrid">
+          <!-- Tips will be shown here -->
         </div>
-
-        <div class="buttonGroup">
-          <button id="githubbtn" type="button">Login to Github</button>
-          <button id="subbtn" type="submit">Post without Github</button>
-        </div>
-
-        <input type="hidden" id="githubInput" name="github">
-        <input type="hidden" id="githubURLInput" name="githubURL">
-      </form></br></br>
-
-    <div class="postGrid">
-      <!-- Tips will be shown here -->
+      </div>
     </div>
-    </div>
-  </div>
 
-    <!-- Bottom -->
-    <div class="bottom">
+    <!-- Bottom Footer -->
+    <footer class="bottom">
       <ul>
         <li>© flglportfolio</li>
       </ul>
 
       <ul>
-        <li><a href="https://github.com/flglflgl"><img src="img/github.svg"></a></li>
-        <li class="lin"><a href="https://www.linkedin.com/in/flgl"><img src="img/linkedin.svg"></a></li>
+        <li><a href="https://github.com/flglflgl"><img src="img/github.svg" alt="Github"></a></li>
+        <li class="lin"><a href="https://www.linkedin.com/in/flgl"><img src="img/linkedin.svg" alt="LinkedIn"></a></li>
       </ul>
-    </div>
   </div>
+  </footer>
 
   <!-- Top (fix position not in grid) -->
-<div class="top">
-  <a href="https://www.flglportfolio.com">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px" height="40px">
-      <defs>
-        <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448" id="gradient-0">
-          <stop offset="0" style="stop-color: rgb(90% 90% 90%)" />
-          <stop offset="1" style="stop-color: rgb(119,119,119)" />
-        </linearGradient>
-      </defs>
-      <rect style="stroke: url(&quot;#gradient-0&quot;); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(119,119,119);" x="75.236" y="34.552" width="40.528" height="120.896" rx="24.8" ry="24.8" />
-    </svg>
-  </a>
-  
-  <ul>
-    <li>
-      <a href="mailto:sarah.flgl@icloud.com">sarah.flgl@icloud.com</a>
-    </li>
-  
-    <li>
-      <a href="https://www.flglportfolio.com/#me">Me</a>
-      <a href="https://www.flglportfolio.com/#me">
-      <span class="svg">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px" height="40px">
-          <defs>
-            <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448" id="gradient-0">
-              <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
-              <stop offset="1" style="stop-color: rgb(119, 119, 119)" />
-            </linearGradient>
-          </defs>
-          <rect style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);" x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
-        </svg>
-      </span>
-    </a>
-    </li>
+  <header class="top">
 
-    <li>
-      <a href="https://www.flglportfolio.com/#skills">Skills</a>
-      <a href="https://www.flglportfolio.com/#skills">
-      <span class="svg">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px" height="40px">
-          <defs>
-            <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448" id="gradient-0">
-              <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
-              <stop offset="1" style="stop-color: rgb(119, 119, 119)" />
-            </linearGradient>
-          </defs>
-          <rect style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);" x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
-        </svg>
-      </span>
-    </a>
-    </li>
-  
-    <li>
-      <a href="https://www.flglportfolio.com/#projects">Projects</a>
-      <a href="https://www.flglportfolio.com/#projects">
-      <span class="svg">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px" height="40px">
-          <defs>
-            <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448" id="gradient-0">
-              <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
-              <stop offset="1" style="stop-color: rgb(119, 119, 119)" />
-            </linearGradient>
-          </defs>
-          <rect style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);" x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
-        </svg>
-      </span>
-    </a>
-    </li>
-  
-    <li>
-      <a href="https://www.tip-flgl.vercel.app">Tip</a>
-      <a href="https://www.tip-flgl.vercel.app">
-      <span class="svgTip">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px" height="40px">
-          <defs>
-            <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448" id="gradient-0">
-              <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
-              <stop offset="1" style="stop-color: rgb(119, 119, 119)" />
-            </linearGradient>
-          </defs>
-          <rect style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);" x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
-        </svg>
-      </span>
-    </a>
-    </li>
-  </ul>
-
-  <button class="minTopUlbtn"><img src="img/menu.svg"></button>
-
-<div class="minTopUl">
-  <button class="minTopUlClosingbtn"><img src="img/minMenu.svg"></button>
-
-  <ul>
-    <li>
-      <span class="li">
-        <span class="svg">
-        </span>
-      <span class="link">
-      <a href="mailto:sarah.flgl@icloud.com">sarah.flgl@icloud.com</a>
-    </span>
-      </span>
-    </li>
-
-    <li>
-      <span class="li">
-      <span class="svg">
-      </span>
-      <span class="link">
-      <a href="http:/www.flglportfolio.com/#me">Me</a>
-    </span>
-      </span>
-    </li>
-
-    <li>
-      <span class="li">
-      <span class="svg">
-      </span>
-      <span class="link">
-      <a href="http:/www.flglportfolio.com/#skills">Skills</a>
-    </span>
-      </span>
-    </li>
-
-    <li>
-      <span class="li">
-      <span class="svg">
-      </span>
-      <span class="link">
-      <a href="http:/www.flglportfolio.com/#projects">Projects</a>
-    </span>
-      </span>
-    </li>
-
-    <li>
-      <span class="li">
-        <span id="projectsSVG" class="svg">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px" height="40px">
+    <!-- SVG Logo -->
+    <a href="https://www.flglportfolio.com">
+      <svg aria-label="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px"
+        height="40px">
         <defs>
           <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448" id="gradient-0">
-            <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
-            <stop offset="1" style="stop-color: rgb(255, 255, 255)" />
+            <stop offset="0" style="stop-color: rgb(90% 90% 90%)" />
+            <stop offset="1" style="stop-color: rgb(119,119,119)" />
           </linearGradient>
         </defs>
-        <rect style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);" x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
+        <rect
+          style="stroke: url(&quot;#gradient-0&quot;); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(119,119,119);"
+          x="75.236" y="34.552" width="40.528" height="120.896" rx="24.8" ry="24.8" />
       </svg>
-    </span>
-      <span class="link">
-      <a href="https://www.tip-flgl.vercel.app">Tip</a>
-    </span>
-    </span>
-    </li>
-  </ul>
-</div>
+    </a>
+
+    <!-- Desktop Menu -->
+    <nav aria-label="Menu">
+      <ul>
+        <li>
+          <a href="mailto:sarah.flgl@icloud.com">sarah.flgl@icloud.com</a>
+        </li>
+
+        <li>
+          <a href="https://www.flglportfolio.com/#me">Me</a>
+          <a href="https://www.flglportfolio.com/#me">
+            <span class="svg">
+              <svg aria-label="Me" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896"
+                width="20px" height="40px">
+                <defs>
+                  <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448"
+                    id="gradient-0">
+                    <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
+                    <stop offset="1" style="stop-color: rgb(119, 119, 119)" />
+                  </linearGradient>
+                </defs>
+                <rect
+                  style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);"
+                  x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
+              </svg>
+            </span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.flglportfolio.com/#skills">Skills</a>
+          <a href="https://www.flglportfolio.com/#skills">
+            <span class="svg">
+              <svg aria-label="Skills" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896"
+                width="20px" height="40px">
+                <defs>
+                  <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448"
+                    id="gradient-0">
+                    <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
+                    <stop offset="1" style="stop-color: rgb(119, 119, 119)" />
+                  </linearGradient>
+                </defs>
+                <rect
+                  style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);"
+                  x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
+              </svg>
+            </span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.flglportfolio.com/#projects">Projects</a>
+          <a href="https://www.flglportfolio.com/#projects">
+            <span class="svg">
+              <svg aria-label="Projects" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896"
+                width="20px" height="40px">
+                <defs>
+                  <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448"
+                    id="gradient-0">
+                    <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
+                    <stop offset="1" style="stop-color: rgb(119, 119, 119)" />
+                  </linearGradient>
+                </defs>
+                <rect
+                  style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);"
+                  x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
+              </svg>
+            </span>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://www.tip-flgl.vercel.app">Tip</a>
+          <a href="https://www.tip-flgl.vercel.app">
+            <span class="svgTip">
+              <svg aria-label="Tip" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896"
+                width="20px" height="40px">
+                <defs>
+                  <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448"
+                    id="gradient-0">
+                    <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
+                    <stop offset="1" style="stop-color: rgb(119, 119, 119)" />
+                  </linearGradient>
+                </defs>
+                <rect
+                  style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);"
+                  x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
+              </svg>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+
+    <!-- Mobile Menu Button -->
+    <button class="minTopUlbtn"><img src="img/menu.svg" alt="Menu Button"></button>
+
+    <!-- Mobile Menu Close Button -->
+    <div class="minTopUl">
+      <button class="minTopUlClosingbtn"><img src="img/minMenu.svg" alt="Menu Close Button"></button>
+
+      <!-- Mobile Menu -->
+      <nav aria-label="Menu">
+        <ul>
+          <li>
+            <span class="li">
+              <span class="svg">
+              </span>
+              <span class="link">
+                <a href="mailto:sarah.flgl@icloud.com">sarah.flgl@icloud.com</a>
+              </span>
+            </span>
+          </li>
+
+          <li>
+            <span class="li">
+              <span class="svg">
+              </span>
+              <span class="link">
+                <a href="http:/www.flglportfolio.com/#me">Me</a>
+              </span>
+            </span>
+          </li>
+
+          <li>
+            <span class="li">
+              <span class="svg">
+              </span>
+              <span class="link">
+                <a href="http:/www.flglportfolio.com/#skills">Skills</a>
+              </span>
+            </span>
+          </li>
+
+          <li>
+            <span class="li">
+              <span class="svg">
+              </span>
+              <span class="link">
+                <a href="http:/www.flglportfolio.com/#projects">Projects</a>
+              </span>
+            </span>
+          </li>
+
+          <li>
+            <span class="li">
+              <span id="projectsSVG" class="svg">
+                <svg aria-label="Tip" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896"
+                  width="20px" height="40px">
+                  <defs>
+                    <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448"
+                      id="gradient-0">
+                      <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
+                      <stop offset="1" style="stop-color: rgb(255, 255, 255)" />
+                    </linearGradient>
+                  </defs>
+                  <rect
+                    style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);"
+                    x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
+                </svg>
+              </span>
+              <span class="link">
+                <a href="https://www.tip-flgl.vercel.app">Tip</a>
+              </span>
+            </span>
+          </li>
+        </ul>
+      </nav>
+  </header>
 
   </div>
 
-  <style>
+  <script src="script/index.js"></script>
 
-    /*
-    **
-    ** Top
-    **
-    ** Bottom
-    **
-    ** Grid
-    **
-    ** Form
-    **
-    ** Tip
-    **
-    ** Cursor
-    **
-    ** Helpers
-    **
-    */
-
-/* S */
-@media screen and (max-width: 780px) {
-
-  * {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: system-ui;
-  font-size: 2.9vh;
-  color: #777777;
-  height: 100vh;
-}
-
-/* ---------- #TOP ---------- */
-  
-.top {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 10vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px 20px 40px;
-    z-index: 100;
-  }
-  
-  .top ul {
-    display: none;
-  }
-  
-  .minTopUlbtn {
-    float: right;
-    width: 49px;
-    height: 49px;
-    border: none;
-    background: none;
-  }
-
-  .minTopUl {
-    position: fixed;
-    top: 0;
-    right: -100vw; /* Off screen */
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100%;
-    background-color: #ffffff;
-    color: #777777;
-    transition: right 0.7s ease-in-out, border-radius 0.7s ease-in-out;
-  }
-  
-  .minTopUl.show {
-    right: 0;
-    border-radius: 0;
-  }
-  
-  .minTopUl ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20vw;
-    height: 49vh;
-  }
-  
-  .minTopUl ul li {
-    display: flex;
-    color: #777777;
-    margin: 12.9px 0;
-    width: 100%;
-  }
-  
-  .minTopUl ul li a {
-    text-decoration: none;
-    color: #777777;
-  }
-  
-  .minTopUl ul li .li {
-    display: grid;
-    grid-template-columns: 4.9px auto;
-    gap: 10px;
-    width: 100%;
-  }
-  
-  .minTopUl .svg {
-    display: flex;
-    align-items: center;
-  }
-  
-  .minTopUl .li svg {
-    width: 4px;
-    height: 8px;
-    filter: invert(46%) sepia(7%) saturate(17%) hue-rotate(359deg) brightness(98%) contrast(89%);
-  }
-  
-  .minTopUlClosingbtn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 49px;
-    height: 49px;
-    border: none;
-    background: none;
-    color: #777777;
-  }
-  
-  .minTopUlClosingbtn img {
-    filter: invert(47%) sepia(0%) saturate(0%) hue-rotate(200deg) brightness(98%) contrast(92%);
-  }
-
-  /* ---------- #BOTTOM ---------- */
-  
-  .bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 0 0 20px;
-  }
-  
-  .bottom li {
-    float: right;
-    margin: 0 20px 0 0;
-  }
-
-  .bottom img {
-    width: 29px;
-    height: 29px;
-    filter: invert(47%) sepia(2%) saturate(0%) hue-rotate(52deg) brightness(97%) contrast(93%);
-  }
-
-  .bottom img:hover {
-    filter: invert(99%) sepia(8%) saturate(54%) hue-rotate(124deg) brightness(110%) contrast(73%);
-  }
-
-  .bottom .lin img {
-    width: 20px;
-    height: 20px;
-    margin-top: 4px;
-  }
-
-/* ---------- #GRID ---------- */
-
-.grid {
-  display: grid;
-  grid-template-rows: 10vh auto 10vh;
-  width: 100vw;
-  height: 100vh;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-.grid::-webkit-scrollbar {
-  display: none;
-}
-
-.mid {
-  width: 70vw;
-  margin: 0 auto;
-  padding: 0 0 100px 0;
-}
-
-.postGrid {
-  display: flex;
-  flex-direction: column;
-  width: 70vw;
-  color: #777777;
-}
-
-/* ---------- #FORM ---------- */
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.logInput {
-  color: #929292;
-  margin: 10px 0;
-}
-
-.logInput a {
-  color: #929292;
-}
-
-input {
-  height: 22px;
-  border: 1px solid #777777;
-  border-radius: 10px;
-  color: #777777;
-  margin: 4px 0 10px 0;
-  padding: 0 10px;
-}
-
-input:focus{
-    outline: none;
-}
-
-.linput {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: calc(70vw - 1.9px);
-  height: 60%;
-  border: 1px solid #777777;
-  border-bottom: none;
-  border-radius: 10px 10px 0 0;
-  overflow: scroll;
-  box-sizing: border-box;
-}
-
-.inputCon {
-  position: relative;
-  width: calc(70vw - 1px);
-  height: 20vh;
-}
-
-.signingInput {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: calc(70vw - 1.9px);
-  height: 40%;
-  border: 1px solid #777777;
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-  background-color: #ffffff;
-  cursor: url(img/pen.svg) 1 26;
-  box-sizing: border-box;
-}
-
-.resetbtn {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  font-size: 12px;
-  background: none;
-  color: #777777;
-  padding: 4px 10px;
-  cursor: pointer;
-}
-
-.resetbtn:hover {
-  background: none;
-  color: rgb(119,119,119,0.7);
-}
-
-.buttonGroup {
-  display: flex;
-  gap: 10px;
-  width: fit-content;
-  margin: 10px 7px;
-}
-
-.buttonGroup button {
-  height: 27px;
-  border: 1px solid transparent;
-  border-radius: 20px;
-  background-color: #777777;
-  color: #ffffff;
-  padding: 0 10px;
-  cursor: pointer;
-}
-
-.buttonGroup button:hover {
-  background-color: rgb(119,119,119,0.7);
-}
-
-/* ---------- #TIP ---------- */
-
-.tipCon {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: calc(100% - 1px);
-  min-height: 100px;
-  border: 1px solid #777777;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  margin: 0 0 20px 0;
-  padding: 20px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.tip {
-  margin: 0 0 20px 0;
-}
-
-.github  {
-  position: absolute;
-  left: 20px;
-  bottom: 20px;
-  cursor: pointer;
-}
-
-.github a {
-  color: #777777;
-  text-decoration: none;
-}
-
-/* ---------- #HELPERS ---------- */
-
-h1 {
-    font-size: 2.9vh;
-    margin: 100px 10px 10px 0;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #777777;
-    cursor: pointer;
-  }
-  
-  p {
-    margin: 4.9px 10px 20px 0;
-  }
-  
-  ul {
-    list-style-type: none;
-  }
-
-  svg {
-    filter: invert(47%) sepia(2%) saturate(0%) hue-rotate(52deg) brightness(97%) contrast(93%);
-  }
-
-}
-
-/* XL */
-@media screen and (min-width: 800px) and (max-width: 2000px) {
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: system-ui;
-  font-size: 2.9vh;
-  color: #777777;
-  height: 100vh;
-}
-
-/* ---------- #TOP ---------- */
-  
-.top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 10vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 20px 20px 20px 29px;
-  z-index: 100;
-}
-
-.top ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-  padding: 0;
-}
-
-.top li:hover .svg svg {
-  display: block;
-}
-
-.top ul li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 7px;
-  min-height: 49px;
-  margin: 20px;
-}
-
-.top ul svg {
-  width: 4px;
-  height: 8px;
-  margin-top: 7px;
-}
-
-.top li:hover .svg {
-  display: block;
-}
-
-.top svg {
-  filter: invert(47%) sepia(2%) saturate(0%) hue-rotate(52deg) brightness(97%) contrast(93%);
-}
-
-.svgTip {
-  display: block;
-}
-
-.svg {
-  display: none;
-}
-  
-.minTopUl {
-    display: none;
-  }
-  
-  .minTopUlbtn {
-    display: none;
-  }
-  
-  /* ---------- #BOTTOM ---------- */
-  
-  .bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 0 0 20px;
-  }
-  
-  .bottom li {
-    float: right;
-    margin: 0 20px 0 0;
-  }
-
-  .bottom img {
-    width: 29px;
-    height: 29px;
-    filter: invert(47%) sepia(2%) saturate(0%) hue-rotate(52deg) brightness(97%) contrast(93%);
-  }
-
-  .bottom .lin img {
-    width: 20px;
-    height: 20px;
-    margin-top: 4px;
-  }
-
-/* ---------- #GRID ---------- */
-
-.grid {
-  display: grid;
-  grid-template-rows: 10vh auto 10vh;
-  width: 100vw;
-  height: 100vh;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-.grid::-webkit-scrollbar {
-  display: none;
-}
-
-.mid {
-  width: 70vw;
-  margin: 0 auto;
-  padding: 0 0 100px 0;
-}
-
-.postGrid {
-  display: flex;
-  flex-direction: column;
-  width: 70vw;
-  color: #777777;
-}
-
-/* ---------- #FORM ---------- */
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.logInput {
-  color: #929292;
-  margin: 10px 0;
-}
-
-.logInput a {
-  color: #929292;
-}
-
-input {
-  height: 22px;
-  border: 1px solid #777777;
-  border-radius: 10px;
-  color: #777777;
-  margin: 4px 0 10px 0;
-  padding: 0 10px;
-}
-
-input:focus{
-    outline: none;
-}
-
-.linput {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: calc(70vw - 1.9px);
-  height: 60%;
-  border: 1px solid #777777;
-  border-bottom: none;
-  border-radius: 10px 10px 0 0;
-  overflow: scroll;
-  box-sizing: border-box;
-}
-
-.inputCon {
-  position: relative;
-  width: calc(70vw - 1px);
-  height: 20vh;
-}
-
-.signingInput {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: calc(70vw - 1.9px);
-  height: 40%;
-  border: 1px solid #777777;
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-  background-color: #ffffff;
-  cursor: url(img/pen.svg) 1 26;
-  box-sizing: border-box;
-}
-
-.resetbtn {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  font-size: 12px;
-  background: none;
-  color: #777777;
-  padding: 4px 10px;
-  cursor: pointer;
-}
-
-.resetbtn:hover {
-  background: none;
-  color: rgb(119,119,119,0.7);
-}
-
-.buttonGroup {
-  display: flex;
-  gap: 10px;
-  width: fit-content;
-  margin: 10px 7px;
-}
-
-button {
-  height: 27px;
-  border: 1px solid transparent;
-  border-radius: 20px;
-  background-color: #777777;
-  color: #ffffff;
-  padding: 0 10px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: rgb(119,119,119,0.7);
-}
-
-/* ---------- #TIP ---------- */
-
-.tipCon {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: calc(100% - 1px);
-  min-height: 100px;
-  border: 1px solid #777777;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  margin: 0 0 20px 0;
-  padding: 20px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.tip {
-  margin: 0 0 20px 0;
-}
-
-.github  {
-  position: absolute;
-  left: 20px;
-  bottom: 20px;
-  cursor: pointer;
-}
-
-.github a {
-  color: #777777;
-  text-decoration: none;
-}
-
- /* ---------- #CURSOR ---------- */
-  
- .cursor {
-    position: absolute;
-    height: 7vh;
-    aspect-ratio: 4/10;
-    border-radius: 20px;
-    background-color: rgba(119, 119, 119, 0.1);
-    transform: translate(-50%, -50%);
-    transition: transform 0.08s linear;
-    z-index: 1000;
-  }
-
-/* ---------- #HELPERS ---------- */
-
-h1 {
-    font-size: 2.9vh;
-    margin: 100px 10px 10px 0;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #777777;
-    cursor: pointer;
-  }
-  
-  p {
-    margin: 4.9px 10px 20px 0;
-  }
-  
-  ul {
-    list-style-type: none;
-  }
-
-  svg {
-    filter: invert(47%) sepia(2%) saturate(0%) hue-rotate(52deg) brightness(97%) contrast(93%);
-  }
-
-}
-
-</style>
-
-<script>
-// Get githubUser and githubURL params upon successful login into Github
-document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const githubUser = params.get('github_user');
-    const githubURL = params.get('github_url');
-
-    const githubbtn = document.getElementById('githubbtn');
-    const subbtn = document.getElementById('subbtn');
-    const logInput = document.querySelector('.logInput');
-    const githubInput = document.getElementById('githubInput');
-    const githubURLInput = document.getElementById('githubURLInput');
-
-    if (githubUser && githubURL) {
-        githubInput.value = githubUser;
-        githubURLInput.value = githubURL;
-        githubbtn.innerHTML = 'Logout';
-        githubbtn.onclick = () => window.location.href = '/logout';
-
-        subbtn.innerHTML = 'Post';
-        logInput.innerHTML = `Logged in as <a href="${params.get('github_url')}" target="_blank">${githubUser}</a>`;
-    }
-  });
-
-  // Custom Cursor
-  document.addEventListener("DOMContentLoaded", () => {
-    const cursor = document.createElement("div");
-    cursor.classList.add("cursor");
-    document.body.appendChild(cursor);
-
-    // Show Cursor
-    cursor.style.display = "block";
-
-    // Cursor Positioning
-    document.addEventListener("mousemove", (e) => {
-        const offsetX = 10;
-        const offsetY = 10;
-        
-        cursor.style.left = `${e.pageX + offsetX}px`;
-        cursor.style.top = `${e.pageY + offsetY}px`;
-    });
-
-});
-
-// Log in to Github
-document.getElementById('githubbtn').addEventListener('click', function () {
-    const clientId = 'Ov23liDjIUQhuJlcCamF'; // Your GitHub Client ID
-    const redirectUri = 'http://localhost:3000/github/callback'; // Redirect URL
-    const scope = 'read:user user:email';
-
-    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}`;
-
-    window.location.href = githubAuthUrl;
-});
-
-
-// Form submission
-const form = document.getElementById('tipForm');
-const tipInput = document.getElementById('tip');
-const githubInput = document.getElementById('githubInput');
-const githubURLInput = document.getElementById('githubURLInput');
-const signingInput = document.querySelector('.signingInput');
-const ctx = signingInput.getContext('2d');
-const postGrid = document.querySelector('.postGrid');
-
-// Explicitly set .signingInput dimensions
-signingInput.width = signingInput.clientWidth;
-signingInput.height = signingInput.clientHeight;
-
-window.addEventListener('resize', () => {
-    signingInput.width = signingInput.clientWidth;
-    signingInput.height = signingInput.clientHeight;
-});
-
-let drawing = false;
-
-
-// .signingInput Mousedown event for desktop
-signingInput.addEventListener('mousedown', (e) => {
-    drawing = true;
-    const rect = signingInput.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-});
-
-signingInput.addEventListener('mouseup', () => (drawing = false));
-signingInput.addEventListener('mouseleave', () => (drawing = false));
-
-
-// .singningInput Touch events for mobile
-signingInput.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    drawing = true;
-    const rect = signingInput.getBoundingClientRect();
-    const touch = e.touches[0];
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-});
-
-signingInput.addEventListener('touchend', () => (drawing = false));
-signingInput.addEventListener('touchcancel', () => (drawing = false));
-
-signingInput.addEventListener('mousemove', draw);
-signingInput.addEventListener('touchmove', (e) => {
-    e.preventDefault();
-    draw(e);
-});
-
-function draw(e) {
-    if (!drawing) return;
-
-    ctx.lineWidth = 1;
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = '#777777';
-
-    const rect = signingInput.getBoundingClientRect();
-    let x, y;
-
-    // Get current mouse/touch position
-    if (e.type === 'mousemove') {
-        x = e.clientX - rect.left;
-        y = e.clientY - rect.top;
-    } else if (e.type === 'touchmove') {
-        const touch = e.touches[0];
-        x = touch.clientX - rect.left;
-        y = touch.clientY - rect.top;
-    }
-
-    if (drawing) {
-        ctx.lineTo(x, y);
-        ctx.stroke(); // Render the stroke
-    }
-}
-
-const resetBtn = document.querySelector('.resetbtn');
-
-resetBtn.addEventListener('click', () => {
-  ctx.clearRect(0, 0, signingInput.width, signingInput.height); // Reset .signingInput
-});
-
-
-// Form Submission
-form.addEventListener('submit', async (event) => {
-    console.log('Submitting form with:');
-    console.log('GitHub:', githubInput.value);
-    console.log('GitHub URL:', githubURLInput.value);
-    event.preventDefault();
-
-    const tip = tipInput.value.trim();
-    const signing = signingInput.toDataURL(); // Convert .signingInput to Base68 to store it in MySQL
-
-    if (!tip) {
-        alert('Tip is required.');
-        return;
-    }
-
-    const requestBody = { tip, signing };
-
-    // Submit input fields if not empty
-    if (githubInput?.value.trim()) {
-        requestBody.github = githubInput.value.trim();
-    }
-    if (githubURLInput?.value.trim()) {
-        requestBody.githubURL = githubURLInput.value.trim();
-    }
-
-    try {
-        const response = await fetch('/tip', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody),
-        });
-
-        const result = await response.json();
-        console.log('Server response:', result);
-
-        if (response.ok) {
-            const newTipElement = createTipElement(
-                result.tip,
-                result.github || '',
-                result.githubURL || '',
-                result.signing
-            );
-
-            postGrid.insertBefore(newTipElement, postGrid.firstChild);
-
-            // Reset form inputs
-            form.reset();
-            ctx.clearRect(0, 0, signingInput.width, signingInput.height);
-        } else {
-            alert(result.error || 'Unknown error');
-        }
-    } catch (error) {
-        console.error('Error submitting tip:', error);
-        alert('Error occurred while submitting your tip.');
-    }
-});
-
-
-// Prepend new .tip element to .postGrid (newest tip first)
-function createTipElement(tip, github, githubURL, signing) {
-    const tipCon = document.createElement('div');
-    tipCon.className = 'tipCon';
-
-    const tipElement = document.createElement('div');
-    tipElement.className = 'tip';
-    tipElement.textContent = tip;
-
-    const githubElement = document.createElement('div');
-    githubElement.className = 'github';
-
-    if (github && githubURL) {
-        const link = document.createElement('a');
-        link.href = githubURLInput;
-        link.textContent = githubInput;
-        link.target = '_blank';
-        githubElement.appendChild(link);
-    } else {
-        githubElement.textContent = github;
-    }
-
-    tipCon.appendChild(tipElement);
-    tipCon.appendChild(githubElement);
-
-    if (signing) {
-        const img = document.createElement('img');
-        img.src = signing;
-        img.style.position = 'absolute';
-        img.style.right = '10px';
-        img.style.bottom = '10px';
-
-        tipCon.appendChild(img);
-    }
-
-    return tipCon;
-}
-
-
-// Fetch Tips from MySQL
-document.addEventListener('DOMContentLoaded', fetchTips);
-
-async function fetchTips() {
-    try {
-        const response = await fetch('/tip');
-        const tips = await response.json();
-
-        postGrid.innerHTML = ''; // Reset previous content
-
-        tips.forEach((tipData) => {
-            const newTipElement = createTipElement(
-                tipData.tip, 
-                tipData.github, 
-                tipData.githubURL, 
-                tipData.signing
-            );
-            postGrid.appendChild(newTipElement);
-        });
-    } catch (error) {
-        console.error('Error fetching tips:', error);
-    }
-}
-
-
-// Follow Cursor effect for .top ul li elements
-document.addEventListener("DOMContentLoaded", function () {
-
-  // Sellect direct children of .top l li
-  const topMenuItems = document.querySelectorAll(".top > ul > li");
-
-  topMenuItems.forEach((item) => {
-    item.addEventListener("mousemove", (event) => {
-      const { clientX, clientY } = event;
-      const rect = item.getBoundingClientRect();
-      const offsetX = clientX - (rect.left + rect.width / 2);
-      const offsetY = clientY - (rect.top + rect.height / 2);
-
-      item.style.transform = `translate(${offsetX * 1.4}px, ${offsetY * 1.4}px)`;
-    });
-
-    item.addEventListener("mouseleave", () => {
-      item.style.transition = "transform 0.4s ease-out";
-      item.style.transform = "translate(0, 0)";
-    });
-  });
-});
-
-
-// Show .minTopUl on click
-document.addEventListener("DOMContentLoaded", () => {
-  const menuButton = document.querySelector(".minTopUlbtn");
-  const menu = document.querySelector(".minTopUl");
-
-  if (menuButton && menu) {
-      menuButton.addEventListener("click", () => {
-          menu.classList.toggle("show");
-      });
-  }
-});
-
-// Hiding .minTopUl on click
-document.querySelector('.minTopUlClosingbtn').addEventListener('click', function() {
-document.querySelector('.minTopUl').classList.remove('show');
-});
-
-// Hiding .minTopUl when clicking on the li element links
-const links = document.querySelectorAll('.minTopUl ul li a');
-
-links.forEach(link => {
-link.addEventListener('click', () => {
-  document.querySelector('.minTopUl').classList.remove('show');
-});
-});
-
-
-</script>
 </body>
 
 </html>

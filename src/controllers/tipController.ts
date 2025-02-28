@@ -31,14 +31,16 @@ export const getTips = async (req: Request, res: Response) => {
   }
 };
 
+
 // INSERT new Tip
-export const insertTip = async (req: Request, res: Response) => {
+export const insertTip = async (req: Request, res: Response): Promise<void> => {
   console.log('Received POST request:', req.body);
 
   const { tip, github, githubURL, signing } = req.body;
 
   if (!tip) {
-    return res.status(400).json({ error: 'Tip is required' });
+    res.status(400).json({ error: 'Tip is required' });
+    return; // Make sure to return here to prevent further execution
   }
 
   const signingBuffer = signing ? Buffer.from(signing.split(',')[1], 'base64') : null;
@@ -46,7 +48,6 @@ export const insertTip = async (req: Request, res: Response) => {
   const query = 'INSERT INTO Tip (tip, github, githubURL, signing) VALUES (?, ?, ?, ?)';
 
   try {
-    // Explicitly define the result type for INSERT
     const results = await queryPromise<{ insertId: number }>(query, [tip, github, githubURL, signingBuffer]);
 
     res.status(201).json({ tip, github, githubURL, signing, tipId: results.insertId });

@@ -8,30 +8,44 @@ import { fileURLToPath } from 'url';
 import session from 'express-session';
 dotenv.config();
 const app = express();
-// Fix for __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(session({
-    secret: '000000000000',
+    secret: process.env.SESSION_SECRET || 'default_secret',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } // Change to `true` for HTTPS
+    cookie: {
+        secure: process.env.NODE_ENV === 'production',
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+    }
 }));
-// Serve static files
 const publicPath = path.join(__dirname, 'public');
 app.use(express.static(publicPath));
-// Use the routes
+// Routes
 app.use('/tip', tipRoutes);
 app.use('/github', githubRoutes);
+// Logout route
 app.get('/logout', (req, res) => {
-    res.redirect('/');
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error destroying session:', err);
+            res.status(500).send('Logout failed');
+        }
+        else {
+            res.redirect('/');
+        }
+    });
 });
-// Catch-all route to serve index.html
+// Serve index.html for root
 app.get('/', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
+});
+app.use((err, req, res, next) => {
+    console.error('Unhandled error:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
 });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

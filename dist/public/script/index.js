@@ -1,18 +1,43 @@
 // Custom Cursor
+// Custom Cursor
 document.addEventListener("DOMContentLoaded", () => {
   const cursor = document.createElement("div");
   cursor.classList.add("cursor");
   document.body.appendChild(cursor);
 
-  cursor.style.display = "block";
+  let isHolding = false;
+  let mouseX = 0, mouseY = 0;
+  let cursorX = 0, cursorY = 0;
+  const smoothFactor = 0.1;
 
+  // Mouse movement
   document.addEventListener("mousemove", (e) => {
-    const offsetX = 10;
-    const offsetY = 10;
-
-    cursor.style.left = `${e.pageX + offsetX}px`;
-    cursor.style.top = `${e.pageY + offsetY}px`;
+    mouseX = e.clientX + 20;
+    mouseY = e.clientY + 20;
   });
+
+  document.addEventListener("mousedown", (e) => {
+    isHolding = true;
+    cursor.style.transform = `scale(1.3)`;
+  });
+
+  document.addEventListener("mouseup", () => {
+    isHolding = false;
+    cursor.style.transform = `scale(1)`;
+  });
+
+  // Smooth movement function
+  function animateCursor() {
+    cursorX += (mouseX - cursorX) * smoothFactor;
+    cursorY += (mouseY - cursorY) * smoothFactor;
+
+    cursor.style.left = `${cursorX}px`;
+    cursor.style.top = `${cursorY}px`;
+
+    requestAnimationFrame(animateCursor);
+  }
+
+  animateCursor();
 });
 
 
@@ -39,24 +64,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // Follow Cursor effect for button
-document.querySelectorAll("button").forEach((btn) => {
+document.querySelectorAll(".buttonGroup button").forEach((btn) => {
   const textSpan = btn.querySelector("span");
 
   btn.addEventListener("mousemove", (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.10;
-      const y = (e.clientY - rect.top) / rect.height - 0.10;
+    const rect = btn.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.10;
+    const y = (e.clientY - rect.top) / rect.height - 0.10;
 
-      // Move button slightly in cursor direction
-      btn.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
+    // Move button slightly in cursor direction
+    btn.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
 
-      // Move font more in cursor direction
-      textSpan.style.transform = `translate(${x * 12}px, ${y * 12}px)`;
+    // Move font more in cursor direction
+    textSpan.style.transform = `translate(${x * 12}px, ${y * 12}px)`;
   });
 
   btn.addEventListener("mouseleave", () => {
-      btn.style.transform = "";
-      textSpan.style.transform = "";
+    btn.style.transform = "";
+    textSpan.style.transform = "";
   });
 });
 
@@ -327,19 +352,19 @@ async function fetchTips() {
 // Follow Cursor effect for .buttonGroup button
 document.querySelectorAll('.buttonGroup button').forEach(button => {
   button.addEventListener('mousemove', (e) => {
-      const rect = button.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
+    const rect = button.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
 
-      // Move the button slightly
-      button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+    // Move the button slightly
+    button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
 
-      // Move the text inside more
-      button.querySelector('span').style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+    // Move the text inside more
+    button.querySelector('span').style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
   });
 
   button.addEventListener('mouseleave', () => {
-      button.style.transform = 'translate(0, 0)';
-      button.querySelector('span').style.transform = 'translate(0, 0)';
+    button.style.transform = 'translate(0, 0)';
+    button.querySelector('span').style.transform = 'translate(0, 0)';
   });
 });

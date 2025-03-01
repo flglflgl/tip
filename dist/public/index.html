@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="stylesheet/index.css">
-  <link rel="icon" href="img/logo.png?">
+  <link rel="icon" href="./img/logo.png">
   <title>Sarah Portfolio</title>
 </head>
 
@@ -42,8 +42,12 @@
 
           <!-- Button Group -->
           <div class="buttonGroup">
-            <button id="githubbtn" type="button"><span>Log into Github</span></button>
-            <button id="subbtn" type="submit"><span>Post without Github</span></button>
+            <button id="githubbtn" type="button"><span>Log into Github</span>
+              <div class="circle"></div>
+            </button>
+            <button id="subbtn" type="submit"><span>Post without Github</span>
+              <div class="circle"></div>
+            </button>
           </div>
 
           <!-- Inputs for User info fetched from Github -->
@@ -59,147 +63,147 @@
     </div>
 
     <!-- Bottom Footer -->
-    <footer class="bottom">
+    <div class="col bottom">
       <ul>
         <li>© flglportfolio</li>
       </ul>
-
       <ul>
-        <li><a href="https://github.com/flglflgl"><img src="img/github.svg" alt="Github"></a></li>
-        <li class="lin"><a href="https://www.linkedin.com/in/flgl"><img src="img/linkedin.svg" alt="LinkedIn"></a></li>
+        <li><a href="https://github.com/flglflgl"><img src="./img/github.svg" alt="GitHub"></a></li>
+        <span class="lin">
+          <li><a href="https://www.linkedin.com/in/flgl"><img src="./img/linkedin.svg" alt="LinkedIn"></a>
+        </span>
+        </li>
       </ul>
-  </div>
-  </footer>
+    </div>
 
-  <!-- Top (fix position not in grid) -->
-  <header class="top">
+  </div>
+
+  <!-- Top (Fixed Position) -->
+  <div class="top">
 
     <!-- SVG Logo -->
-    <a href="https://www.flglportfolio.com">
-      <svg aria-label="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px"
-        height="40px">
+    <a href="https://flglportfolio.com">
+      <svg aria-label="logo" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20"
+        height="40">
         <defs>
           <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448" id="gradient-0">
-            <stop offset="0" style="stop-color: rgb(90% 90% 90%)" />
+            <stop offset="0" style="stop-color: rgb(100%, 100%, 100%)" />
             <stop offset="1" style="stop-color: rgb(159,159,161)" />
           </linearGradient>
         </defs>
-        <rect
-          style="stroke: url(&quot;#gradient-0&quot;); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(159,159,161);"
-          x="75.236" y="34.552" width="40.528" height="120.896" rx="24.8" ry="24.8" />
+        <rect style="stroke: url(#gradient-0); fill: rgb(159,159,161);" x="75.236" y="34.552" width="40.528"
+          height="120.896" rx="24.8" ry="24.8" />
       </svg>
     </a>
 
     <!-- Desktop Menu -->
-    <nav aria-label="Menu">
+    <nav>
       <ul>
         <li>
-          <a href="mailto:sarah.flgl@icloud.com">sarah.flgl@icloud.com</a>
+          <a href="mailto:sarah.flgl@icloud.com">Connect</a>
         </li>
 
         <li>
-          <a href="https://www.flglportfolio.com/#me">Me</a>
-          <a href="https://www.flglportfolio.com/#me">
-            <span class="svg">
-              <svg aria-label="Me" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896"
-                width="20px" height="40px">
+          <a href="#me">Me</a>
+          <span id="meSVG" class="svg">
+            <a href="#me">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px" height="40px">
                 <defs>
                   <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448"
                     id="gradient-0">
                     <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
-                    <stop offset="1" style="stop-color: rgb(159,159,161)" />
+                    <stop offset="1" style="stop-color: rgb(199,199,201)" />
                   </linearGradient>
                 </defs>
                 <rect
-                  style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);"
+                  style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(199,199,201);"
                   x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
               </svg>
-            </span>
-          </a>
+            </a>
+          </span>
         </li>
 
         <li>
-          <a href="https://www.flglportfolio.com/#skills">Skills</a>
-          <a href="https://www.flglportfolio.com/#skills">
-            <span class="svg">
-              <svg aria-label="Skills" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896"
-                width="20px" height="40px">
+          <a href="#skills">Skills</a>
+          <span id="skillsSVG" class="svg">
+            <a href="#skills">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px" height="40px">
                 <defs>
                   <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448"
                     id="gradient-0">
                     <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
-                    <stop offset="1" style="stop-color: rgb(159,159,161)" />
+                    <stop offset="1" style="stop-color: rgb(199,199,201)" />
                   </linearGradient>
                 </defs>
                 <rect
-                  style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);"
+                  style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(199,199,201);"
                   x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
               </svg>
-            </span>
-          </a>
+            </a>
+          </span>
         </li>
 
         <li>
-          <a href="https://www.flglportfolio.com/#projects">Projects</a>
-          <a href="https://www.flglportfolio.com/#projects">
-            <span class="svg">
-              <svg aria-label="Projects" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896"
-                width="20px" height="40px">
+          <a href="#projects">Projects</a>
+          <span id="projectsSVG" class="svg">
+            <a href="#projects">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px" height="40px">
                 <defs>
                   <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448"
                     id="gradient-0">
                     <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
-                    <stop offset="1" style="stop-color: rgb(159,159,161)" />
+                    <stop offset="1" style="stop-color: rgb(199,199,201)" />
                   </linearGradient>
                 </defs>
                 <rect
-                  style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);"
+                  style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(199,199,201);"
                   x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
               </svg>
-            </span>
-          </a>
+            </a>
+          </span>
         </li>
 
         <li>
-          <a href="https://www.tip-flgl.vercel.app">Tip</a>
-          <a href="https://www.tip-flgl.vercel.app">
-            <span class="svgTip">
-              <svg aria-label="Tip" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896"
-                width="20px" height="40px">
+          <a href="https://www.tip-flgl.vercel.app">Tips</a>
+          <span class="svg">
+            <a href="https://www.tip-flgl.vercel.app">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px" height="40px">
                 <defs>
                   <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448"
                     id="gradient-0">
                     <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
-                    <stop offset="1" style="stop-color: rgb(159,159,161)" />
+                    <stop offset="1" style="stop-color: rgb(199,199,201)" />
                   </linearGradient>
                 </defs>
                 <rect
-                  style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);"
+                  style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(199,199,201);"
                   x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
               </svg>
-            </span>
-          </a>
+            </a>
+          </span>
         </li>
       </ul>
     </nav>
 
-
     <!-- Mobile Menu Button -->
-    <button class="minTopUlbtn"><img src="img/menu.svg" alt="Menu Button"></button>
+    <button class="minTopUlbtn">
+      <img src="./img/menu.svg" alt="Menu">
+    </button>
 
-    <!-- Mobile Menu Close Button -->
+    <!-- Mobile Menu -->
     <div class="minTopUl">
-      <button class="minTopUlClosingbtn"><img src="img/minMenu.svg" alt="Menu Close Button"></button>
+      <button class="minTopUlClosingbtn">
+        <img src="./img/minMenu.svg" alt="Close Menu">
+      </button>
 
-      <!-- Mobile Menu -->
-      <nav aria-label="Menu">
+      <nav>
         <ul>
           <li>
             <span class="li">
               <span class="svg">
               </span>
               <span class="link">
-                <a href="mailto:sarah.flgl@icloud.com">sarah.flgl@icloud.com</a>
+                <a href="mailto:sarah.flgl@icloud.com">Connect</a>
               </span>
             </span>
           </li>
@@ -209,7 +213,7 @@
               <span class="svg">
               </span>
               <span class="link">
-                <a href="http:/www.flglportfolio.com/#me">Me</a>
+                <a href="http://www.flglflglportfolio.com/#me">Me</a>
               </span>
             </span>
           </li>
@@ -219,7 +223,7 @@
               <span class="svg">
               </span>
               <span class="link">
-                <a href="http:/www.flglportfolio.com/#skills">Skills</a>
+                <a href="http://www.flglflglportfolio.com/#skills">Skills</a>
               </span>
             </span>
           </li>
@@ -229,39 +233,39 @@
               <span class="svg">
               </span>
               <span class="link">
-                <a href="http:/www.flglportfolio.com/#projects">Projects</a>
+                <a href="http://www.flglflglportfolio.com/#projects">Projects</a>
               </span>
             </span>
           </li>
 
           <li>
             <span class="li">
-              <span id="projectsSVG" class="svg">
-                <svg aria-label="Tip" xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896"
-                  width="20px" height="40px">
+              <span id="tipsSVG" class="svg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="75.236 34.552 49.528 130.896" width="20px"
+                  height="40px">
                   <defs>
                     <linearGradient gradientUnits="userSpaceOnUse" x1="100" y1="34.552" x2="100" y2="165.448"
                       id="gradient-0">
                       <stop offset="0" style="stop-color: rgb(100% 100% 100%)" />
-                      <stop offset="1" style="stop-color: rgb(255, 255, 255)" />
+                      <stop offset="1" style="stop-color: rgb(199,199,201)" />
                     </linearGradient>
                   </defs>
                   <rect
-                    style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(255, 255, 255);"
+                    style="stroke: url(#gradient-0); stroke-miterlimit: 1; stroke-width: 0px; fill: rgb(199,199,201);"
                     x="75.236" y="34.552" width="49.528" height="130.896" rx="24.8" ry="24.8" />
                 </svg>
               </span>
               <span class="link">
-                <a href="https://www.tip-flgl.vercel.app">Tip</a>
+                <a href="https://www.tip-flgl.vercel.app">Tips</a>
               </span>
             </span>
           </li>
         </ul>
       </nav>
-  </header>
-
+    </div>
   </div>
 
+  <!-- Script -->
   <script src="script/index.js"></script>
 
 </body>

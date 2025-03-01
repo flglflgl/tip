@@ -1,5 +1,4 @@
 // Custom Cursor
-// Custom Cursor
 document.addEventListener("DOMContentLoaded", () => {
   const cursor = document.createElement("div");
   cursor.classList.add("cursor");
@@ -128,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // GitHub Login Redirect
 document.getElementById('githubbtn').addEventListener('click', function () {
   const clientId = 'Ov23liDjIUQhuJlcCamF'; // Your GitHub Client ID
-  const redirectUri = 'http://localhost:3000/github/callback'; // Redirect URL
+  const redirectUri = 'https://www.flglflglportfolio.com/github/callback'; // Redirect URL
   const scope = 'read:user user:email';
 
   const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}`;

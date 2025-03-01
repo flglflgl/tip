@@ -42,7 +42,6 @@
          align-items: center;
          justify-content: center;
          font-family: 'SF Pro';
-         font-size: 2.9vh;
          color: #a9a9aa;
          height: 100vh;
      }
@@ -401,7 +400,7 @@
      /* ---------- #HELPERS ---------- */
 
      h1 {
-         font-size: 2.9vh;
+         font-size: 19px;
          margin: 100px 10px 10px 0;
      }
 
@@ -435,7 +434,6 @@
          align-items: center;
          justify-content: center;
          font-family: 'SF Pro';
-         font-size: 2.9vh;
          color: #9f9fa1;
          height: 100vh;
      }
@@ -755,7 +753,7 @@
      /* ---------- #HELPERS ---------- */
 
      h1 {
-         font-size: 2.9vh;
+         font-size: 19px;
          margin: 100px 10px 10px 0;
      }
 

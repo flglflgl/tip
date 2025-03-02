@@ -416,7 +416,7 @@
        #EFFECTS
      \*------------------------------------*/
 
-
+     /* Button Group follow cursor effect */
 
      .buttonGroup {
          display: flex;
@@ -791,6 +791,8 @@
      /*------------------------------------*\
        #EFFECTS
      \*------------------------------------*/
+
+     /* Button Group follow cursor effect */
 
      .buttonGroup {
          display: flex;

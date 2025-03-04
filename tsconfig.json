@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",  // ✅ Fix: Support ES modules
-    "moduleResolution": "NodeNext",  // ✅ Fix: Proper module resolution
-    "target": "ESNext",  // ✅ Recommended for latest features
-    "outDir": "./dist",  
-    "rootDir": "./src",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "outDir": "dist",  
+    "rootDir": "src",
     "strict": true
   }
 }

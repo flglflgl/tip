@@ -171,17 +171,19 @@
      }
 
 
-     .minTopUl .liItem {
+     .minTopUl .liCon {
          display: grid;
          grid-template-columns: 4.9px auto;
          gap: 10px;
          width: 100%;
+         border: 1px solid #9f9fa1;
      }
 
 
      .minTopUl .svgCon {
          display: flex;
          align-items: center;
+         border: 1px solid #9f9fa1;
      }
 
 
@@ -489,6 +491,7 @@
 
      h1 {
          font-size: 19px;
+         font-weight: 700;
          margin: 100px 10px 10px 0;
      }
 
@@ -877,6 +880,7 @@
 
      h1 {
          font-size: 19px;
+         font-weight: 700;
          margin: 100px 10px 10px 0;
      }
 

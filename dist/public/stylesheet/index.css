@@ -83,7 +83,7 @@
  }
 
  /* S */
- @media screen and (max-width: 780px) {
+ @media screen and (max-width: 480px) {
 
      /*------------------------------------*\
        #TOP
@@ -232,7 +232,7 @@
      }
 
      .bottom li {
-         font-size: 1rem;
+         font-size: 1.1rem;
          margin: 0 -2px 0 0;
      }
 
@@ -265,7 +265,7 @@
      }
 
      .copyrightsign img:hover {
-        filter: invert(61%) sepia(58%) saturate(7%) hue-rotate(201deg) brightness(92%) contrast(97%);
+         filter: invert(61%) sepia(58%) saturate(7%) hue-rotate(201deg) brightness(92%) contrast(97%);
      }
 
      /*------------------------------------*\
@@ -312,7 +312,6 @@
          flex-direction: column;
          width: calc(100% - 1px);
          min-height: 100px;
-         font-weight: 600;
          border: 1px solid #a9a9aa;
          border-radius: 10px;
          margin-bottom: 10px;
@@ -415,7 +414,7 @@
          position: absolute;
          right: 10px;
          bottom: 10px;
-         font-size: 12px;
+         font-size: 0.7rem;
          border: none;
          background: none;
          color: #9f9fa1;
@@ -493,7 +492,7 @@
      \*------------------------------------*/
 
      h1 {
-         font-size: 19px;
+         font-size: 1.2rem;
          margin: 100px 10px 10px 0;
      }
 
@@ -504,19 +503,454 @@
      }
 
      p {
-         font-weight: 600;
+         font-size: 1rem;
+         font-weight: 700;
          margin: 4.9px 10px 20px 0;
      }
 
      ul {
-         font-weight: 600;
+         font-weight: 700;
+         list-style-type: none;
+     }
+
+ }
+
+ /* L */
+ @media screen and (min-width: 480px) and (max-width: 900px) {
+
+     /*------------------------------------*\
+       #TOP
+     \*------------------------------------*/
+
+     /* Top Section (Logo, Menu) */
+
+     .top {
+         position: fixed;
+         top: 0;
+         left: 0;
+         right: 0;
+         height: 10vh;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 20px;
+         z-index: 100;
+     }
+
+
+     /* Desktop Menu*/
+
+     .top ul {
+         display: none;
+     }
+
+
+     /* Mobile Menu */
+
+     .minTopUlbtn {
+         float: right;
+         width: 49px;
+         height: 49px;
+         border: none;
+         background: none;
+         color: #a9a9aa;
+         filter: invert(61%) sepia(58%) saturate(7%) hue-rotate(201deg) brightness(92%) contrast(97%);
+     }
+
+
+     .minTopUl {
+         position: fixed;
+         top: 0;
+         right: -100vw;
+         /* Off screen */
+         width: 100vw;
+         height: 100vh;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         border-radius: 100%;
+         background-color: #ffffff;
+         color: #a9a9aa;
+         transition: right 0.7s ease-in-out, border-radius 0.7s ease-in-out;
+     }
+
+
+     .minTopUl.show {
+         right: 0;
+         border-radius: 0;
+     }
+
+
+     .minTopUl ul {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         width: 20vw;
+         height: 49vh;
+     }
+
+
+     .minTopUl ul li {
+         display: flex;
+         color: #a9a9aa;
+         margin: 12.9px 0;
+         width: 100%;
+     }
+
+
+     .minTopUl a {
+         text-decoration: none;
+         color: #a9a9aa;
+     }
+
+
+     .minTopUl .liCon {
+         display: grid;
+         grid-template-columns: 7px auto;
+         gap: 4.9px;
+         width: 100%;
+         height: 20px;
+         box-sizing: border-box;
+     }
+
+
+     .minTopUl .svgCon {
+         display: flex;
+         align-items: center;
+         height: 20px;
+         box-sizing: border-box;
+     }
+
+
+     .minTopUl svg {
+         width: 4px;
+         height: 8px;
+     }
+
+
+     /* Mobile Menu Button */
+
+     .minTopUlClosingbtn {
+         position: absolute;
+         top: 20px;
+         right: 20px;
+         width: 49px;
+         height: 49px;
+         border: none;
+         background: none;
+         color: #a9a9aa;
+     }
+
+
+     .minTopUlClosingbtn img {
+         filter: invert(94%) sepia(6%) saturate(60%) hue-rotate(201deg) brightness(88%) contrast(84%);
+     }
+
+     /*------------------------------------*\
+      #BOTTOM
+    \*------------------------------------*/
+
+     .bottom {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         width: 100%;
+         padding: 10px 0 0 0;
+     }
+
+     .bottom ul {
+         display: flex;
+         align-items: center;
+         margin: 0 10px;
+     }
+
+     .bottom li {
+         font-size: 1.1rem;
+         margin: 0 -2px 0 0;
+     }
+
+     /* Github SVG */
+     .bottom img {
+         width: 24px;
+         height: 24px;
+         filter: invert(61%) sepia(58%) saturate(7%) hue-rotate(201deg) brightness(92%) contrast(97%);
+     }
+
+     /* LinkedIn SVG */
+     .bottom .lin img {
+         width: 40px;
+         height: 40px;
+     }
+
+     .bottom img:hover {
+         filter: invert(91%) sepia(2%) saturate(97%) hue-rotate(202deg) brightness(95%) contrast(86%);
+     }
+
+     /* Copyright Sign */
+     .copyrightsign {
+         display: flex;
+         align-items: center;
+     }
+
+     .copyrightsign img {
+         width: 24px;
+         height: 24px;
+     }
+
+     .copyrightsign img:hover {
+         filter: invert(61%) sepia(58%) saturate(7%) hue-rotate(201deg) brightness(92%) contrast(97%);
+     }
+
+     /*------------------------------------*\
+      #GRID
+    \*------------------------------------*/
+
+     .grid {
+         display: grid;
+         grid-template-rows: 10vh auto 10vh;
+         width: 100vw;
+         height: 100vh;
+         -ms-overflow-style: none;
+         scrollbar-width: none;
+         overflow-x: hidden;
+         overflow-y: scroll;
+     }
+
+     .grid::-webkit-scrollbar {
+         display: none;
+     }
+
+     .mid {
+         width: 70vw;
+         margin: 0 auto;
+         padding: 0 0 100px 0;
+     }
+
+     /*------------------------------------*\
+      #POSTGRID
+    \*------------------------------------*/
+
+     .postGrid {
+         display: flex;
+         flex-direction: column;
+         width: 70vw;
+         color: #a9a9aa;
+     }
+
+     /* Tip */
+
+     .tipCon {
+         position: relative;
+         display: flex;
+         flex-direction: column;
+         width: calc(100% - 1px);
+         min-height: 100px;
+         border: 1px solid #a9a9aa;
+         border-radius: 10px;
+         margin-bottom: 10px;
+         margin: 0 0 20px 0;
+         padding: 20px;
+         box-sizing: border-box;
+         overflow: hidden;
+     }
+
+     .tip {
+         margin: 0 0 20px 0;
+     }
+
+     .github {
+         position: absolute;
+         left: 20px;
+         bottom: 20px;
+         cursor: pointer;
+     }
+
+     .github a {
+         color: #9f9fa1;
+         text-decoration: none;
+     }
+
+     /*------------------------------------*\
+      #FORM
+    \*------------------------------------*/
+
+     form {
+         display: flex;
+         flex-direction: column;
+     }
+
+     /* logInput showing who is logging into Github */
+
+     .logInput {
+         color: #a9a9aa;
+         margin: 10px 0;
+     }
+
+     .logInput a {
+         color: #a9a9aa;
+     }
+
+
+     /* Input for submitting Tips */
+
+     input {
+         height: 22px;
+         border: 1px solid #a9a9aa;
+         border-radius: 10px;
+         color: #a9a9aa;
+         margin: 4px 0 10px 0;
+         padding: 0 10px;
+     }
+
+     input:focus {
+         outline: none;
+     }
+
+     .linput {
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         width: calc(70vw - 1.9px);
+         height: 60%;
+         border: 1px solid;
+         border-bottom: none;
+         border-radius: 10px 10px 0 0;
+         overflow: scroll;
+         box-sizing: border-box;
+     }
+
+     .inputCon {
+         position: relative;
+         width: calc(70vw - 1px);
+         height: 20vh;
+     }
+
+     /* signingInput for signing Tips */
+
+     .signingInput {
+         position: absolute;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         width: calc(70vw - 1.9px);
+         height: 40%;
+         border: 1px solid #a9a9aa;
+         border-top: none;
+         border-radius: 0 0 10px 10px;
+         background-color: #ffffff;
+         cursor: url(img/pen.svg) 1 26;
+         box-sizing: border-box;
+     }
+
+     .resetbtn {
+         position: absolute;
+         right: 10px;
+         bottom: 10px;
+         font-size: 0.7rem;
+         border: none;
+         background: none;
+         color: #9f9fa1;
+         padding: 4px 10px;
+         cursor: pointer;
+     }
+
+     .resetbtn:hover {
+         background: none;
+         color: rgba(159, 159, 161, 0.7);
+     }
+
+     /*------------------------------------*\
+      #EFFECTS
+    \*------------------------------------*/
+
+     /* Button Group follow cursor effect */
+
+     .buttonGroup {
+         display: flex;
+         gap: 10px;
+         width: fit-content;
+         margin: 10px 7px;
+     }
+
+     .buttonGroup button {
+         position: relative;
+         height: 40px;
+         border: 1px solid #ffffff;
+         border-radius: 20px;
+         background-color: #a9a9aa;
+         color: #ffffff;
+         padding: 10px 29px;
+         cursor: pointer;
+         overflow: hidden;
+         transition: transform 0.2s ease-out, color 0.3s ease-out;
+         z-index: 1;
+     }
+
+     .buttonGroup button span {
+         display: inline-block;
+         position: relative;
+         transition: transform 0.1s ease-out, color 0.3s ease-out;
+         z-index: 2;
+     }
+
+     /* Flying circle */
+     .circle {
+         position: absolute;
+         bottom: -40px;
+         left: 50%;
+         width: 10px;
+         height: 10px;
+         border: 1px solid #c7c7c9;
+         border-radius: 50%;
+         background-color: #c7c7c9;
+         transform: translateX(-50%) translateY(100%) scale(0);
+         transition: transform 0.4s ease-out, width 0.4s ease-out, height 0.4s ease-out;
+         z-index: 1;
+     }
+
+     /* Hover effect */
+     .buttonGroup button:active .circle {
+         transform: translateX(-50%) translateY(0) scale(8);
+         width: 150px;
+         height: 150px;
+     }
+
+     .buttonGroup button:active {
+         color: #ffffff;
+     }
+
+     /*------------------------------------*\
+      #HELPERS
+    \*------------------------------------*/
+
+     h1 {
+         font-size: 1.2rem;
+         margin: 100px 10px 10px 0;
+     }
+
+     a {
+         text-decoration: none;
+         color: #9f9fa1;
+         cursor: pointer;
+     }
+
+     p {
+         font-size: 1rem;
+         font-weight: 700;
+         margin: 4.9px 10px 20px 0;
+     }
+
+     ul {
+         font-weight: 700;
          list-style-type: none;
      }
 
  }
 
  /* XL */
- @media screen and (min-width: 800px) {
+ @media screen and (min-width: 900px) {
 
      /*------------------------------------*\
        #TOP
@@ -569,11 +1003,11 @@
      }
 
      .top ul li:hover svg {
-        display: block;
+         display: block;
      }
 
      .top .svgConTip svg {
-        display: block;
+         display: block;
      }
 
      /* Mobile Menu */
@@ -595,6 +1029,7 @@
          align-items: center;
          justify-content: space-between;
          width: 100%;
+         padding: 10px 0 0 0;
      }
 
      .bottom ul {
@@ -604,7 +1039,7 @@
      }
 
      .bottom li {
-         font-size: 1rem;
+         font-size: 1.1rem;
          margin: 0 -2px 0 0;
      }
 
@@ -637,7 +1072,7 @@
      }
 
      .copyrightsign img:hover {
-        filter: invert(61%) sepia(58%) saturate(7%) hue-rotate(201deg) brightness(92%) contrast(97%);
+         filter: invert(61%) sepia(58%) saturate(7%) hue-rotate(201deg) brightness(92%) contrast(97%);
      }
 
      /*------------------------------------*\
@@ -788,7 +1223,7 @@
          position: absolute;
          right: 10px;
          bottom: 10px;
-         font-size: 12px;
+         font-size: 0.7rem;
          border: none;
          background: none;
          color: #9f9fa1;
@@ -881,7 +1316,7 @@
      \*------------------------------------*/
 
      h1 {
-         font-size: 19px;
+         font-size: 1.2rem;
          margin: 100px 10px 10px 0;
      }
 
@@ -892,6 +1327,7 @@
      }
 
      p {
+         font-size: 1rem;
          font-weight: 600;
          margin: 4.9px 10px 20px 0;
      }

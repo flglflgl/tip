@@ -1,11 +1,10 @@
 {
   "name": "tip",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/server.js",
-    "run": "node dist/server.js",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "type": "module",
   "keywords": [],

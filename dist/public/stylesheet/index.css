@@ -218,26 +218,24 @@
          display: flex;
          align-items: center;
          justify-content: space-between;
-         width: 100%;
-         padding: 0 40px;
      }
 
      .bottom ul {
          display: flex;
          align-items: center;
-         margin: 0 10px;
+         margin: 0 10px 0 20px;
      }
 
      .bottom li {
          font-size: 1.1rem;
-         margin: 0 -4px 0 0;
+         margin: 0 -2px 0 0;
      }
 
      /* Github SVG */
      .bottom img {
          width: 24px;
          height: 24px;
-         filter: invert(70%) sepia(3%) saturate(141%) hue-rotate(201deg) brightness(92%) contrast(87%);
+         filter: invert(99%) sepia(100%) saturate(0%) hue-rotate(88deg) brightness(105%) contrast(100%);
      }
 
      /* LinkedIn SVG */
@@ -247,7 +245,7 @@
      }
 
      .bottom img:hover {
-         filter: invert(95%) sepia(6%) saturate(65%) hue-rotate(202deg) brightness(85%) contrast(89%);
+         filter: invert(91%) sepia(2%) saturate(97%) hue-rotate(202deg) brightness(95%) contrast(86%);
      }
 
      /* Copyright Sign */
@@ -257,9 +255,13 @@
      }
 
      .copyrightsign img {
-         width: 14.9px;
-         height: 14.9px;
+         width: 29px;
+         height: 29px;
          margin: 0 4.9px 0 0;
+     }
+
+     .copyrightsign img:hover {
+         filter: invert(99%) sepia(100%) saturate(0%) hue-rotate(88deg) brightness(105%) contrast(100%);
      }
 
      /*------------------------------------*\
@@ -587,26 +589,24 @@
          display: flex;
          align-items: center;
          justify-content: space-between;
-         width: 100%;
-         padding: 0 40px;
      }
 
      .bottom ul {
          display: flex;
          align-items: center;
-         margin: 0 10px;
+         margin: 0 10px 0 20px;
      }
 
      .bottom li {
          font-size: 1.1rem;
-         margin: 0 -4px 0 0;
+         margin: 0 -2px 0 0;
      }
 
      /* Github SVG */
      .bottom img {
          width: 24px;
          height: 24px;
-         filter: invert(70%) sepia(3%) saturate(141%) hue-rotate(201deg) brightness(92%) contrast(87%);
+         filter: invert(99%) sepia(100%) saturate(0%) hue-rotate(88deg) brightness(105%) contrast(100%);
      }
 
      /* LinkedIn SVG */
@@ -616,7 +616,7 @@
      }
 
      .bottom img:hover {
-         filter: invert(95%) sepia(6%) saturate(65%) hue-rotate(202deg) brightness(85%) contrast(89%);
+         filter: invert(91%) sepia(2%) saturate(97%) hue-rotate(202deg) brightness(95%) contrast(86%);
      }
 
      /* Copyright Sign */
@@ -626,9 +626,13 @@
      }
 
      .copyrightsign img {
-         width: 14.9px;
-         height: 14.9px;
+         width: 29px;
+         height: 29px;
          margin: 0 4.9px 0 0;
+     }
+
+     .copyrightsign img:hover {
+         filter: invert(99%) sepia(100%) saturate(0%) hue-rotate(88deg) brightness(105%) contrast(100%);
      }
 
      /*------------------------------------*\

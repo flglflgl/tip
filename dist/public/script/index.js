@@ -245,7 +245,7 @@ form.addEventListener('submit', async (event) => {
   }
 
   try {
-    const response = await fetch('/tip', {
+    const response = await fetch('https://tip-vg4x.onrender.com/tip', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

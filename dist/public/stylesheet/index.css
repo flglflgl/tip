@@ -100,7 +100,7 @@
          display: flex;
          justify-content: space-between;
          align-items: center;
-         padding: 20px 20px 20px 40px;
+         padding: 20px;
          z-index: 100;
      }
 
@@ -120,6 +120,8 @@
          height: 49px;
          border: none;
          background: none;
+         color: #a9a9aa;
+         filter: invert(61%) sepia(58%) saturate(7%) hue-rotate(201deg) brightness(92%) contrast(97%);
      }
 
 
@@ -158,7 +160,6 @@
 
      .minTopUl ul li {
          display: flex;
-         font-weight: 500;
          color: #a9a9aa;
          margin: 12.9px 0;
          width: 100%;
@@ -173,22 +174,23 @@
 
      .minTopUl .liCon {
          display: grid;
-         grid-template-columns: 4.9px auto;
-         gap: 10px;
+         grid-template-columns: 7px auto;
+         gap: 4.9px;
          width: 100%;
-         border: 1px solid #9f9fa1;
+         height: 20px;
+         box-sizing: border-box;
      }
 
 
      .minTopUl .svgCon {
          display: flex;
          align-items: center;
-         border: 1px solid #9f9fa1;
+         height: 20px;
+         box-sizing: border-box;
      }
 
 
-     .minTopUl .li svg {
-         display: flex;
+     .minTopUl svg {
          width: 4px;
          height: 8px;
      }
@@ -220,16 +222,17 @@
          display: flex;
          align-items: center;
          justify-content: space-between;
+         width: 100%;
      }
 
      .bottom ul {
          display: flex;
          align-items: center;
-         margin: 0 10px 0 20px;
+         margin: 0 10px;
      }
 
      .bottom li {
-         font-size: 1.1rem;
+         font-size: 1rem;
          margin: 0 -2px 0 0;
      }
 
@@ -237,7 +240,7 @@
      .bottom img {
          width: 24px;
          height: 24px;
-         filter: invert(99%) sepia(100%) saturate(0%) hue-rotate(88deg) brightness(105%) contrast(100%);
+         filter: invert(61%) sepia(58%) saturate(7%) hue-rotate(201deg) brightness(92%) contrast(97%);
      }
 
      /* LinkedIn SVG */
@@ -257,13 +260,12 @@
      }
 
      .copyrightsign img {
-         width: 29px;
-         height: 29px;
-         margin: 0 4.9px 0 0;
+         width: 24px;
+         height: 24px;
      }
 
      .copyrightsign img:hover {
-         filter: invert(99%) sepia(100%) saturate(0%) hue-rotate(88deg) brightness(105%) contrast(100%);
+        filter: invert(61%) sepia(58%) saturate(7%) hue-rotate(201deg) brightness(92%) contrast(97%);
      }
 
      /*------------------------------------*\
@@ -310,6 +312,7 @@
          flex-direction: column;
          width: calc(100% - 1px);
          min-height: 100px;
+         font-weight: 600;
          border: 1px solid #a9a9aa;
          border-radius: 10px;
          margin-bottom: 10px;
@@ -475,13 +478,13 @@
      }
 
      /* Hover effect */
-     .buttonGroup button:hover .circle {
+     .buttonGroup button:active .circle {
          transform: translateX(-50%) translateY(0) scale(8);
          width: 150px;
          height: 150px;
      }
 
-     .buttonGroup button:hover {
+     .buttonGroup button:active {
          color: #ffffff;
      }
 
@@ -491,7 +494,6 @@
 
      h1 {
          font-size: 19px;
-         font-weight: 700;
          margin: 100px 10px 10px 0;
      }
 
@@ -507,6 +509,7 @@
      }
 
      ul {
+         font-weight: 600;
          list-style-type: none;
      }
 
@@ -529,7 +532,7 @@
          justify-content: space-between;
          align-items: center;
          background-color: #ffffff;
-         padding: 20px;
+         padding: 20px 20px 20px 40px;
          z-index: 100;
      }
 
@@ -544,9 +547,6 @@
          padding: 0;
      }
 
-     .top ul li:hover .svgCon {
-         display: block;
-     }
 
      .top ul li {
          display: flex;
@@ -568,11 +568,13 @@
          display: none;
      }
 
-     .top ul li.show svg {
-         display: inline-block;
-         transition: transform 0.2s ease-out;
+     .top ul li:hover svg {
+        display: block;
      }
 
+     .top .svgConTip svg {
+        display: block;
+     }
 
      /* Mobile Menu */
 
@@ -592,16 +594,17 @@
          display: flex;
          align-items: center;
          justify-content: space-between;
+         width: 100%;
      }
 
      .bottom ul {
          display: flex;
          align-items: center;
-         margin: 0 10px 0 20px;
+         margin: 0 10px;
      }
 
      .bottom li {
-         font-size: 1.1rem;
+         font-size: 1rem;
          margin: 0 -2px 0 0;
      }
 
@@ -609,7 +612,7 @@
      .bottom img {
          width: 24px;
          height: 24px;
-         filter: invert(99%) sepia(100%) saturate(0%) hue-rotate(88deg) brightness(105%) contrast(100%);
+         filter: invert(61%) sepia(58%) saturate(7%) hue-rotate(201deg) brightness(92%) contrast(97%);
      }
 
      /* LinkedIn SVG */
@@ -629,13 +632,12 @@
      }
 
      .copyrightsign img {
-         width: 29px;
-         height: 29px;
-         margin: 0 4.9px 0 0;
+         width: 24px;
+         height: 24px;
      }
 
      .copyrightsign img:hover {
-         filter: invert(99%) sepia(100%) saturate(0%) hue-rotate(88deg) brightness(105%) contrast(100%);
+        filter: invert(61%) sepia(58%) saturate(7%) hue-rotate(201deg) brightness(92%) contrast(97%);
      }
 
      /*------------------------------------*\
@@ -880,7 +882,6 @@
 
      h1 {
          font-size: 19px;
-         font-weight: 700;
          margin: 100px 10px 10px 0;
      }
 
@@ -896,6 +897,7 @@
      }
 
      ul {
+         font-weight: 600;
          list-style-type: none;
      }
 

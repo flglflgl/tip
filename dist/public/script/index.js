@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // GitHub Login Redirect
 document.getElementById('githubbtn').addEventListener('click', function () {
   const clientId = 'Ov23liDjIUQhuJlcCamF'; // GitHub Client ID
-  const redirectUri = 'https://tip-vg4x.onrender.com/callback'; // Redirect URL
+  const redirectUri = 'https://tip-vg4x.onrender.com/github/callback'; // Redirect URL
   const scope = 'read:user user:email';
 
   const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}`;
@@ -327,11 +327,17 @@ document.addEventListener('DOMContentLoaded', fetchTips);
 async function fetchTips() {
   try {
     const response = await fetch('/tip');
-    const tips = await response.json();
+    const data = await response.json();
+    console.log("Fetched data:", data); // Debugging step
+
+    if (!Array.isArray(data)) {
+      console.error("Expected an array but got:", data);
+      return;
+    }
 
     postGrid.innerHTML = ''; // Reset previous content
 
-    tips.forEach((tipData) => {
+    data.forEach((tipData) => {
       const newTipElement = createTipElement(
         tipData.tip,
         tipData.github,

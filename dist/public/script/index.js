@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // GitHub Login Redirect
 document.getElementById('githubbtn').addEventListener('click', function () {
-  const clientId = 'Ov23liDjIUQhuJlcCamF'; // Your GitHub Client ID
+  const clientId = 'Ov23liDjIUQhuJlcCamF'; // GitHub Client ID
   const redirectUri = 'https://tip-vg4x.onrender.com/callback'; // Redirect URL
   const scope = 'read:user user:email';
 
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     ctx.lineWidth = 1;
     ctx.lineCap = "round";
-    ctx.strokeStyle = "#777777";
+    ctx.strokeStyle = "#9f9fa1";
 
     const rect = signingInput.getBoundingClientRect();
     let x, y;

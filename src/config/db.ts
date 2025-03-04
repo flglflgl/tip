@@ -1,36 +1,22 @@
-import mysql from 'mysql';
+import { Pool } from 'pg';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const DB_HOST = process.env.DB_HOST;
-const DB_USER = process.env.DB_USER;
-const DB_PASSWORD = process.env.DB_PASSWORD;
-const DB_NAME = process.env.DB_NAME;
-const DB_PORT = Number(process.env.DB_PORT) || 3306;
-
-// Connection Pool
-const pool = mysql.createPool({
-  host: DB_HOST,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_NAME,
-  port: DB_PORT,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 });
 
 // Helper function to test the connection
-export const sqlCon = () => {
-  pool.getConnection((err: any, connection: { release: () => void; }) => {
-    if (err) {
-      console.error('MySQL connection error:', err);
-      return;
-    }
-    console.log('MySQL connection successful!');
-    connection.release(); 
-  });
+export const sqlCon = async () => {
+  try {
+    const client = await pool.connect();
+    console.log('PostgreSQL connection successful!');
+    client.release();
+  } catch (err) {
+    console.error('PostgreSQL connection error:', err);
+  }
 };
 
 export default pool;

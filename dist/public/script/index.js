@@ -327,26 +327,29 @@ document.addEventListener('DOMContentLoaded', fetchTips);
 async function fetchTips() {
   try {
     const response = await fetch('/tip');
-    const data = await response.json();
-    console.log("Fetched data:", data); // Debugging step
+    const tips = await response.json();
 
-    if (!Array.isArray(data)) {
-      console.error("Expected an array but got:", data);
-      return;
+    // Log to check if tips is an array
+    console.log('Fetched tips:', tips);
+
+    // Check if tips is actually an array
+    if (Array.isArray(tips)) {
+      postGrid.innerHTML = ''; // Reset previous content
+
+      tips.forEach((tipData) => {
+        const newTipElement = createTipElement(
+          tipData.tip,
+          tipData.github,
+          tipData.githubURL,
+          tipData.signing
+        );
+        console.log(tipData.githubURL);
+        postGrid.appendChild(newTipElement);
+      });
+    } else {
+      console.error('Expected an array but got:', tips);
+      alert('Error: Expected an array of tips.');
     }
-
-    postGrid.innerHTML = ''; // Reset previous content
-
-    data.forEach((tipData) => {
-      const newTipElement = createTipElement(
-        tipData.tip,
-        tipData.github,
-        tipData.githubURL,
-        tipData.signing
-      );
-      console.log(tipData.githubURL);
-      postGrid.appendChild(newTipElement);
-    });
   } catch (error) {
     console.error('Error fetching tips:', error);
   }
